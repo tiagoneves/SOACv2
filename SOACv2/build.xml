@@ -1,0 +1,84 @@
+<project name="Arquitetura" default="deploy" basedir=".">
+
+	<path id="classpath">
+		<pathelement location="jfxrt.jar" />
+		<pathelement location="ant-javafx.jar" />
+	</path>
+
+	<property name="javafx.tools.ant.jar" location="ant-javafx.jar"/>
+	<property name="nomeAplicacao" value="SOAC"/>
+	<property name="vendor" value="Unipê"/>
+	
+    <target name="app-config">
+        <property name="applet.width" value="1250"/>
+        <property name="applet.height" value="700"/>
+    </target>
+ 
+    <target name="init-fx-tasks">
+        
+        <taskdef name="fxdeploy"
+                 classname="com.sun.javafx.tools.ant.DeployFXTask"
+                 classpath="${javafx.tools.ant.jar}"/>
+        <taskdef name="fxjar"
+                 classname="com.sun.javafx.tools.ant.FXJar"
+                 classpath="${javafx.tools.ant.jar}"/>
+
+        <taskdef name="fxsignjar"
+                 classname="com.sun.javafx.tools.ant.FXSignJarTask"
+                 classpath="${javafx.tools.ant.jar}"/>
+    </target>
+
+	<target name="limpar" depends="app-config, init-fx-tasks">
+        <delete dir="jar"/>
+		<delete dir="dist"/>
+		<delete dir="bin"/>
+    </target>
+
+	<target name="compilar" depends="limpar">
+		<mkdir dir="bin"/>
+		<javac encoding="8859_1" srcdir="src" destdir="bin">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="imagens" depends ="compilar">
+			<copy todir="${basedir}/bin/br/unipe/simuladores/arquitetura/botoes">
+				<fileset dir="${basedir}/src/br/unipe/simuladores/arquitetura/botoes">
+					<include name = "*.png"/>
+				</fileset>
+			</copy>
+	</target>
+ 
+    <target name="deploy" depends="imagens">
+        <delete file="jar/${nomeAplicacao}.jar"/>
+        <fxjar destfile="jar/${nomeAplicacao}.jar">
+        	<application mainClass="br.unipe.simuladores.arquitetura.principal.Main"/>
+            <fileset dir="bin"/>
+
+            <manifest>
+              <attribute name="Implementation-Vendor" value="${vendor}"/>
+              <attribute name="Implementation-Title" value="${nomeAplicacao}"/>
+              <attribute name="Implementation-Version" value="1.0"/>
+            </manifest>
+        </fxjar>
+
+ 
+        <fxdeploy width="${applet.width}" height="${applet.height}"
+                  outdir="dist" embedJNLP="true"
+                  outfile="${nomeAplicacao}">
+            <info title="${nomeAplicacao}"
+                  vendor="${vendor}"/>
+            <application name="${nomeAplicacao}"
+                         mainClass="br.unipe.simuladores.arquitetura.principal.Main"/>
+            <resources>
+               <fileset dir="jar">
+                  <include name="${nomeAplicacao}.jar"/>
+
+               </fileset>
+            </resources>
+        </fxdeploy>
+    	
+
+    </target>
+	
+</project>
