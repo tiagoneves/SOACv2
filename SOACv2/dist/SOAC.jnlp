@@ -2,7 +2,7 @@
 <jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SOAC.jnlp">
   <information>
     <title>SOAC</title>
-    <vendor>Unipê</vendor>
+    <vendor>Tiago</vendor>
     <description>Sample JavaFX 2.0 application.</description>
     <offline-allowed/>
   </information>
@@ -11,11 +11,11 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SOAC.jar" size="208576" download="eager" />
+    <jar href="SOAC.jar" size="205218" download="eager" />
   </resources>
   <applet-desc  width="1250" height="700" main-class="com.javafx.main.NoJavaFXFallback"  name="SOAC" >
     <param name="requiredFXVersion" value="2.2+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="1250" height="700" main-class="br.unipe.simuladores.arquitetura.principal.Main"  name="SOAC" />
+  <jfx:javafx-desc  width="1250" height="700" main-class="br.unipe.simuladores.soac.principal.Main"  name="SOAC" />
   <update check="background"/>
 </jnlp>

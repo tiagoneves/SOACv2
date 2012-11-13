@@ -1,4 +1,4 @@
-<project name="Arquitetura" default="deploy" basedir=".">
+<project name="SOAC" default="deploy" basedir=".">
 
 	<path id="classpath">
 		<pathelement location="jfxrt.jar" />
@@ -7,7 +7,7 @@
 
 	<property name="javafx.tools.ant.jar" location="ant-javafx.jar"/>
 	<property name="nomeAplicacao" value="SOAC"/>
-	<property name="vendor" value="Unipê"/>
+	<property name="vendor" value="Tiago"/>
 	
     <target name="app-config">
         <property name="applet.width" value="1250"/>
@@ -42,8 +42,8 @@
 	</target>
 	
 	<target name="imagens" depends ="compilar">
-			<copy todir="${basedir}/bin/br/unipe/simuladores/arquitetura/botoes">
-				<fileset dir="${basedir}/src/br/unipe/simuladores/arquitetura/botoes">
+			<copy todir="${basedir}/bin/br/unipe/simuladores/soac/botoes">
+				<fileset dir="${basedir}/src/br/unipe/simuladores/soac/botoes">
 					<include name = "*.png"/>
 				</fileset>
 			</copy>
@@ -52,7 +52,7 @@
     <target name="deploy" depends="imagens">
         <delete file="jar/${nomeAplicacao}.jar"/>
         <fxjar destfile="jar/${nomeAplicacao}.jar">
-        	<application mainClass="br.unipe.simuladores.arquitetura.principal.Main"/>
+        	<application mainClass="br.unipe.simuladores.soac.principal.Main"/>
             <fileset dir="bin"/>
 
             <manifest>
@@ -69,7 +69,7 @@
             <info title="${nomeAplicacao}"
                   vendor="${vendor}"/>
             <application name="${nomeAplicacao}"
-                         mainClass="br.unipe.simuladores.arquitetura.principal.Main"/>
+                         mainClass="br.unipe.simuladores.soac.principal.Main"/>
             <resources>
                <fileset dir="jar">
                   <include name="${nomeAplicacao}.jar"/>
