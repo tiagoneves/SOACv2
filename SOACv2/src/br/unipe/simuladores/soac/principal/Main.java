@@ -22,7 +22,7 @@ public class Main extends Application {
         Rectangle2D tela = Screen.getPrimary().getVisualBounds();
 		
 		TelaPrincipal telaPrincipal = new TelaPrincipal(stage, 
-				"SOAC - Simulador de Organização e Arquitetura de Computadores", 
+				"SOAC - Simulador de Organizaï¿½ï¿½o e Arquitetura de Computadores", 
 				Color.WHITE, tela.getHeight(), tela.getWidth());
 		telaPrincipal.exibir();
 		
