@@ -1,5 +1,7 @@
 package br.unipe.simuladores.soac.principal;
 
+import br.unipe.simuladores.soac.internacional.Idioma;
+import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -18,11 +20,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
+		//carrega o arquivo de labels
+		Labels.carregar(Idioma.INGLES_US);
+		
 		 //Ajusta a cena para ocupar toda a tela do monitor
         Rectangle2D tela = Screen.getPrimary().getVisualBounds();
 		
 		TelaPrincipal telaPrincipal = new TelaPrincipal(stage, 
-				"SOAC - Simulador de Organização e Arquitetura de Computadores", 
+				Labels.obterValor("soac"), 
 				Color.WHITE, tela.getHeight(), tela.getWidth());
 		telaPrincipal.exibir();
 		

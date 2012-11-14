@@ -2,6 +2,7 @@ package br.unipe.simuladores.soac.componentes.circulos;
 
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculoQuebravel;
 import br.unipe.simuladores.soac.componentes.internos.BarramentoInterno;
+import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -109,12 +110,12 @@ public class SistemaInterconexao extends ComponenteCirculoQuebravel{
 	@Override
 	protected void adicionarTexto() {
 		
-		barramentoTxt = new Text("Barramento");
+		barramentoTxt = new Text(Labels.obterValor("barramento"));
 		barramentoTxt.setX(1070);
 		barramentoTxt.setY(320);
 		barramentoTxt.setFont(new Font(12));
 		
-		moduloESTxt = new Text("Módulo de E/S");
+		moduloESTxt = new Text(Labels.obterValor("moduloes"));
 		moduloESTxt.setX(410);
 		moduloESTxt.setY(580);
 		moduloESTxt.setFont(new Font(12));

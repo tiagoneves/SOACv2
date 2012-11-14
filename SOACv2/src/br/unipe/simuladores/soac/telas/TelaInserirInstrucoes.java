@@ -8,6 +8,7 @@ import br.unipe.simuladores.soac.componentes.internos.unidades.Instrucao;
 import br.unipe.simuladores.soac.enums.ModoEnderecamento;
 import br.unipe.simuladores.soac.enums.Operacao;
 import br.unipe.simuladores.soac.excecoes.DadosInvalidosException;
+import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.simulacao.Controlador;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,10 +34,10 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 	private TextField tfValor1 = new TextField();
 	private ChoiceBox<String> cbModEnd2 = new ChoiceBox<String>();
 	private TextField tfValor2 = new TextField();
-	private Button btnInserir = new Button("Inserir>>");
+	private Button btnInserir = new Button(Labels.obterValor("inserirseta"));
 	private ListView<String> lstInstrucoes = new ListView<String>();
-	private Button btnRemover = new Button("Remover Selecionada");
-	private Button btnIniciar = new Button("Iniciar Simulação");
+	private Button btnRemover = new Button(Labels.obterValor("removerselecionada"));
+	private Button btnIniciar = new Button(Labels.obterValor("iniciarsimulacao"));
 	private ModoEnderecamento modo1;
 	private ModoEnderecamento modo2;
 	private Operacao operacao;
@@ -60,7 +61,7 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		HBox hBox1 = new HBox();
 		hBox1.setSpacing(10);
 		hBox1.setAlignment(Pos.CENTER);
-		Text tipo = new Text("Tipo:");
+		Text tipo = new Text(Labels.obterValor("tipo"));
 		hBox1.getChildren().add(tipo);
 		cbTipo.getItems().addAll("MOV", "ADD", "SUB", "MUL", "DIV");
 		cbTipo.getSelectionModel().selectFirst();
@@ -69,12 +70,12 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		
 		HBox hBox2 = new HBox();
 		hBox2.setSpacing(50);
-		Text operando1 = new Text("Operando 1");
+		Text operando1 = new Text(Labels.obterValor("operando1"));
 		operando1.setTranslateX(120);
 		operando1.setTranslateY(5);
 		operando1.setFill(Color.BLUE);
 		hBox2.getChildren().add(operando1);
-		Text operando2 = new Text("Operando 2");
+		Text operando2 = new Text(Labels.obterValor("operando2"));
 		operando2.setTranslateX(375);
 		operando2.setTranslateY(5);
 		operando2.setFill(Color.BLUE);
@@ -90,13 +91,14 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		grid1.setHgap(10);
 		grid1.setVgap(10);
 		
-		Text modEnd1 = new Text("Modo de endereçamento:");
+		Text modEnd1 = new Text(Labels.obterValor("modoenderecamento"));
 		grid1.add(modEnd1, 0, 0);
-		cbModEnd1.getItems().addAll("Imediato", "Direto", "Indireto", 
-				"Registrador", "Indireto de Registrador");
+		cbModEnd1.getItems().addAll(Labels.obterValor("imediato"), 
+				Labels.obterValor("direto"), Labels.obterValor("indireto"), 
+				Labels.obterValor("registrador"), Labels.obterValor("indiretoregistrador"));
 		cbModEnd1.getSelectionModel().selectFirst();
 		grid1.add(cbModEnd1, 1, 0);
-		Text valor1 = new Text("Valor:");
+		Text valor1 = new Text(Labels.obterValor("valor"));
 		grid1.add(valor1, 0, 1);
 		tfValor1.setMaxWidth(50);
 		grid1.add(tfValor1, 1, 1);
@@ -107,13 +109,14 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		grid2.setHgap(10);
 		grid2.setVgap(10);
 		
-		Text modEnd2 = new Text("Modo de endereçamento:");
+		Text modEnd2 = new Text(Labels.obterValor("modoenderecamento"));
 		grid2.add(modEnd2, 0, 0);
-		cbModEnd2.getItems().addAll("Imediato", "Direto", "Indireto", 
-				"Registrador", "Indireto de Registrador");
+		cbModEnd2.getItems().addAll(Labels.obterValor("imediato"), 
+				Labels.obterValor("direto"), Labels.obterValor("indireto"), 
+				Labels.obterValor("registrador"), Labels.obterValor("indiretoregistrador"));
 		cbModEnd2.getSelectionModel().selectFirst();
 		grid2.add(cbModEnd2, 1, 0);
-		Text valor2 = new Text("Valor:");
+		Text valor2 = new Text(Labels.obterValor("valor"));
 		grid2.add(valor2, 0, 1);
 		tfValor2.setMaxWidth(50);
 		grid2.add(tfValor2, 1, 1);
@@ -254,10 +257,10 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		String valor2 = tfValor2.getText();
 		
 		if (valor1.isEmpty()) 
-			throw new DadosInvalidosException("Por favor, informe um valor para o operando 1");
+			throw new DadosInvalidosException(Labels.obterValor("informeoperando1"));
 		
 		if (valor2.isEmpty()) 
-			throw new DadosInvalidosException("Por favor, informe um valor para o operando 2");
+			throw new DadosInvalidosException(Labels.obterValor("informeoperando2"));
 		
 		modo1 = obterModoEnderecamento(cbModEnd1);
 		modo2 = obterModoEnderecamento(cbModEnd2);
@@ -271,34 +274,34 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		
 		switch(modo1) {
 		case IMEDIATO: throw new DadosInvalidosException
-			("O modo de enderçamento do operando 1 não pode ser imediato");
+			(Labels.obterValor("modoop1naopodeimediato"));
 		case DIRETO:{ 
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
-				throw new DadosInvalidosException("A variável com o valor informado para o operando 1 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("valorvarop1naoexiste"));
 			else {
 				if (TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().ehPonteiro(valor, false))
-					throw new DadosInvalidosException("A variável com o valor informado para o operando 1 é um ponteiro");
+					throw new DadosInvalidosException(Labels.obterValor("valorvarop1ehponteiro"));
 			};
 		};break;
 		case INDIRETO: {
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
-				throw new DadosInvalidosException("A variável com o valor informado para o operando 1 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("valorvarop1naoexiste"));
 			else {
 				if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().ehPonteiro(valor, false))
-					throw new DadosInvalidosException("A variável com o valor informado para o operando 1 não é um ponteiro");
+					throw new DadosInvalidosException(Labels.obterValor("valorvarop1naoehponteiro"));
 			};
 		}break;
 		case REGISTRADOR: {
 			if(!TelaPrincipal.getComputador().getUCP().getUCPInterna().contemRegistrador(valor))
-				throw new DadosInvalidosException("O registrador com o valor informado para o operando 1 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("registradorvalorop1naoexiste"));
 		}break;
 		case INDIRETO_REGISTRADOR: {
 			if(!TelaPrincipal.getComputador().getUCP().getUCPInterna().contemRegistrador(valor))
-				throw new DadosInvalidosException("O registrador com o valor informado para o operando 1 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("registradorvalorop1naoexiste"));
 			else {
 				Integer endereco = TelaPrincipal.getComputador().getUCP().getUCPInterna().obterConteudoRegistrador(valor);
 				if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(endereco, true))
-					throw new DadosInvalidosException("O registrador informado não contém um endereço de memória");
+					throw new DadosInvalidosException(Labels.obterValor("registradornaocontemendmemoria"));
 			}
 		}break;
 		}
@@ -315,38 +318,38 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 				try {
 					Float.parseFloat(valor);
 				}catch(NumberFormatException nfe2) {
-					throw new DadosInvalidosException("O valor informado para o operando 2 precisa ser um inteiro ou ponto flutuante");
+					throw new DadosInvalidosException(Labels.obterValor("valorop2precisaserintoufloat"));
 				}
-				throw new DadosInvalidosException("O valor informado para o operando 2 precisa ser um inteiro ou ponto flutuante");
+				throw new DadosInvalidosException(Labels.obterValor("valorop2precisaserintoufloat"));
 			}
 		}break;
 		case DIRETO:{ 
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
-				throw new DadosInvalidosException("A variável com o valor informado para o operando 2 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("valorvarop2naoexiste"));
 			else {
 				if (TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().ehPonteiro(valor, false))
-					throw new DadosInvalidosException("A variável com o valor informado para o operando 2 é um ponteiro");
+					throw new DadosInvalidosException(Labels.obterValor("valorvarop2ehponteiro"));
 			};
 		};break;
 		case INDIRETO: {
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
-				throw new DadosInvalidosException("A variável com o valor informado para o operando 2 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("valorvarop2naoexiste"));
 			else {
 				if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().ehPonteiro(valor, false))
-					throw new DadosInvalidosException("A variável com o valor informado para o operando 2 não é um ponteiro");
+					throw new DadosInvalidosException(Labels.obterValor("valorvarop2naoehponteiro"));
 			};
 		}break;
 		case REGISTRADOR: {
 			if(!TelaPrincipal.getComputador().getUCP().getUCPInterna().contemRegistrador(valor))
-				throw new DadosInvalidosException("O registrador com o valor informado para o operando 2 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("registradorvalorop2naoexiste"));
 		}break;
 		case INDIRETO_REGISTRADOR: {
 			if(!TelaPrincipal.getComputador().getUCP().getUCPInterna().contemRegistrador(valor))
-				throw new DadosInvalidosException("O registrador com o valor informado para o operando 2 não existe");
+				throw new DadosInvalidosException(Labels.obterValor("registradorvalorop2naoexiste"));
 			else {
 				Integer endereco = TelaPrincipal.getComputador().getUCP().getUCPInterna().obterConteudoRegistrador(valor);
 				if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(endereco, true))
-					throw new DadosInvalidosException("O registrador informado não contém um endereço de memória");
+					throw new DadosInvalidosException(Labels.obterValor("registradornaocontemendmemoria"));
 			}
 		}break;
 		}

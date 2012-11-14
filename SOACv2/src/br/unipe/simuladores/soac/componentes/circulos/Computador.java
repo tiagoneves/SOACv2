@@ -1,6 +1,7 @@
 package br.unipe.simuladores.soac.componentes.circulos;
 
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculo;
+import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -116,7 +117,7 @@ public class Computador extends ComponenteCirculo {
 		
 		group.getChildren().remove(txtComputador);
 		
-        txtComputador = new Text("COMPUTADOR");
+        txtComputador = new Text(Labels.obterValor("computador"));
 		
 		//se for expandir adiciona outros elementos ao círculo do computador
 		if (expanded) {
@@ -124,19 +125,19 @@ public class Computador extends ComponenteCirculo {
 			txtComputador.setX(560);
 			txtComputador.setY(240);
 			
-			Text txtEntradaSaida = new Text("Entrada/Saída");
+			Text txtEntradaSaida = new Text(Labels.obterValor("es"));
 			txtEntradaSaida.setX(480);
 			txtEntradaSaida.setY(300);
 			
-			Text txtMemoriaPrincipal = new Text("Memória principal");
+			Text txtMemoriaPrincipal = new Text(Labels.obterValor("memoriaprincipal"));
 			txtMemoriaPrincipal.setX(640);
 			txtMemoriaPrincipal.setY(300);
 			
-			Text txtSistema = new Text("Sistema de interconexão");
+			Text txtSistema = new Text(Labels.obterValor("sistemainterconexao"));
 			txtSistema.setX(535);
 			txtSistema.setY(400);
 			
-			Text txtUcp = new Text("Unidade central de\n processamento");
+			Text txtUcp = new Text(Labels.obterValor("ucp"));
 			txtUcp.setX(550);
 			txtUcp.setY(520);
 			
@@ -149,7 +150,7 @@ public class Computador extends ComponenteCirculo {
 			
 		} else {
 			
-			textClique = new Text("Clique para expandir");
+			textClique = new Text(Labels.obterValor("clique"));
 			textClique.setX(550);
 			textClique.setY(300);
 			

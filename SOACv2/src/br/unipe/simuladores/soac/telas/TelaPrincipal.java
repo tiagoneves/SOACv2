@@ -5,6 +5,7 @@ import br.unipe.simuladores.soac.botoes.BotaoStop;
 import br.unipe.simuladores.soac.componentes.circulos.Computador;
 import br.unipe.simuladores.soac.componentes.internos.unidades.VariavelIdentificador;
 import br.unipe.simuladores.soac.enums.OpcaoJanelaMensagem;
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -94,19 +95,19 @@ public class TelaPrincipal extends Tela{
 		
 		MenuBar menuBar = new MenuBar();
 		
-		Menu inserir = new Menu("Inserir");
-		MenuItem instrucoes = new MenuItem("Instruções");
+		Menu inserir = new Menu(Labels.obterValor("inserir"));
+		MenuItem instrucoes = new MenuItem(Labels.obterValor("instrucoes"));
 		instrucoes.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	TelaInserirInstrucoes inserirInstrucoes = 
-		    			new TelaInserirInstrucoes("Inserir Instruções", 
+		    			new TelaInserirInstrucoes(Labels.obterValor("inseririnstrucoes"), 
 		    					Color.rgb(245, 245, 245), 450, 760);
 		    	inserirInstrucoes.exibir();
 		    }
 		});
 		instrucoes.setDisable(true);
 		inserir.getItems().add(instrucoes);
-		MenuItem variavel = new MenuItem("Variável");
+		MenuItem variavel = new MenuItem(Labels.obterValor("variavel"));
 		variavel.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	TelaInserirVariavel inserirVariavel = 
@@ -118,8 +119,8 @@ public class TelaPrincipal extends Tela{
 		variavel.setDisable(true);
 		inserir.getItems().add(variavel);
 		
-		Menu outros = new Menu("Outros");
-		MenuItem sied = new MenuItem("SIED - Simuladores Integrados de Estrutura de Dados");
+		Menu outros = new Menu(Labels.obterValor("outros"));
+		MenuItem sied = new MenuItem(Labels.obterValor("sied"));
 		sied.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	TelaWebView telaSied = new TelaWebView("Outros Simuladores", Color.WHITE, 
@@ -131,7 +132,7 @@ public class TelaPrincipal extends Tela{
 		});
 		outros.getItems().add(sied);
 		
-		MenuItem sin = new MenuItem("SIN - Simuladores Integrados de Sistemas Operacionais");
+		MenuItem sin = new MenuItem(Labels.obterValor("sin"));
 		sin.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	TelaWebView telaSin = new TelaWebView("Outros Simuladores", Color.WHITE, 
@@ -144,9 +145,9 @@ public class TelaPrincipal extends Tela{
 		outros.getItems().add(sin);
 		
 		ToggleGroup tgGroupMensagem = new ToggleGroup();
-		Menu janela = new Menu("Janela");
-		Menu mensagens = new Menu("Mensagens");
-		RadioMenuItem exibir = new RadioMenuItem("Exibir");
+		Menu janela = new Menu(Labels.obterValor("janela"));
+		Menu mensagens = new Menu(Labels.obterValor("mensagens"));
+		RadioMenuItem exibir = new RadioMenuItem(Labels.obterValor("exibir"));
 		exibir.setToggleGroup(tgGroupMensagem);
 		mensagens.getItems().add(exibir);
 		
@@ -162,7 +163,7 @@ public class TelaPrincipal extends Tela{
 			
 		});
 		
-		RadioMenuItem esconder = new RadioMenuItem("Esconder");
+		RadioMenuItem esconder = new RadioMenuItem(Labels.obterValor("esconder"));
 		esconder.setToggleGroup(tgGroupMensagem);
 		mensagens.getItems().add(esconder);
 		
@@ -178,7 +179,7 @@ public class TelaPrincipal extends Tela{
 			
 		});
 		
-		RadioMenuItem naoExibir = new RadioMenuItem("Não Exibir");
+		RadioMenuItem naoExibir = new RadioMenuItem(Labels.obterValor("naoexibir"));
 		naoExibir.setToggleGroup(tgGroupMensagem);
 		mensagens.getItems().add(naoExibir);
 		
@@ -196,7 +197,7 @@ public class TelaPrincipal extends Tela{
 		
 		tgGroupMensagem.selectToggle(esconder);
 		
-		opExibirMensSimulacao = new RadioMenuItem("Exibir Mensagens da Simulacão");
+		opExibirMensSimulacao = new RadioMenuItem(Labels.obterValor("exibirmenssimulacao"));
 		opExibirMensSimulacao.setSelected(true);
 		
 		exibirMensagensDeSimulacao = true;
@@ -218,8 +219,8 @@ public class TelaPrincipal extends Tela{
 		janela.getItems().add(mensagens);
 		
 		ToggleGroup tgGroupVariaveis = new ToggleGroup();
-	    Menu var = new Menu("Variáveis");
-		RadioMenuItem exibirVar = new RadioMenuItem("Exibir");
+	    Menu var = new Menu(Labels.obterValor("variaveis"));
+		RadioMenuItem exibirVar = new RadioMenuItem(Labels.obterValor("exibir"));
 		exibirVar.setToggleGroup(tgGroupVariaveis);
 		var.getItems().add(exibirVar);
 		
@@ -234,7 +235,7 @@ public class TelaPrincipal extends Tela{
 			
 		});
 		
-		RadioMenuItem naoExibirVar = new RadioMenuItem("Não Exibir");
+		RadioMenuItem naoExibirVar = new RadioMenuItem(Labels.obterValor("naoexibir"));
 		naoExibirVar.setToggleGroup(tgGroupVariaveis);
 		var.getItems().add(naoExibirVar);
 		
@@ -253,8 +254,8 @@ public class TelaPrincipal extends Tela{
 		
 		janela.getItems().add(var);
 		
-		Menu ajuda = new Menu("Ajuda");
-		MenuItem sobre = new MenuItem("Sobre");
+		Menu ajuda = new Menu(Labels.obterValor("ajuda"));
+		MenuItem sobre = new MenuItem(Labels.obterValor("sobre"));
 		ajuda.getItems().add(sobre);
 		
 		sobre.setOnAction(new EventHandler<ActionEvent>(){

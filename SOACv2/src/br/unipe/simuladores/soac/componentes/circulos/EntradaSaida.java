@@ -1,6 +1,7 @@
 package br.unipe.simuladores.soac.componentes.circulos;
 
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculo;
+import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -138,23 +139,23 @@ public class EntradaSaida extends ComponenteCirculo{
 	@Override
 	protected void adicionarTexto() {
 
-		Text es = new Text("Entrada/Saída");
+		Text es = new Text(Labels.obterValor("es"));
 		es.setX(500);
 		es.setY(260);
 		es.setFont(new Font(6));
 		
-		Text legiveisSerHumano = new Text("Legíveis\n ao ser\n humano");
+		Text legiveisSerHumano = new Text(Labels.obterValor("legiveishumano"));
 		legiveisSerHumano.setX(482);
 		legiveisSerHumano.setY(288);
 		legiveisSerHumano.setFont(new Font(5));
 		
-		Text legiveisMaquina = new Text("Legíveis\n à Máquina");
+		Text legiveisMaquina = new Text(Labels.obterValor("legiveismaquina"));
 		legiveisMaquina.setX(537);
 		legiveisMaquina.setY(292);
 		legiveisMaquina.setFont(new Font(5));
 		
 		Text comunicacaoDispositivosRemotos = 
-				new Text("   Comunicação \ncom dispositivos\n       remotos");
+				new Text("    "+Labels.obterValor("comunicacaodisprem"));
 		comunicacaoDispositivosRemotos.setX(500);
 		comunicacaoDispositivosRemotos.setY(340);
 		comunicacaoDispositivosRemotos.setFont(new Font(5));

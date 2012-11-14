@@ -2,6 +2,7 @@ package br.unipe.simuladores.soac.componentes.circulos;
 
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculoQuebravel;
 import br.unipe.simuladores.soac.componentes.internos.UCPInterna;
+import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -140,27 +141,27 @@ public class UCP extends ComponenteCirculoQuebravel{
 	@Override
 	protected void adicionarTexto() {
 		
-		Text cpu = new Text("UCP");
+		Text cpu = new Text(Labels.obterValor("ucpabrev"));
 		cpu.setX(591);
 		cpu.setY(470);
 		cpu.setFont(new Font(8));
 		
-		Text registradores = new Text("Registradores");
+		Text registradores = new Text(Labels.obterValor("registradores"));
 		registradores.setX(562);
 		registradores.setY(490);
 		registradores.setFont(new Font(4));
 		
-		Text alu = new Text("Unidade Lógica\n e Aritmética");
+		Text alu = new Text(Labels.obterValor("ula"));
 		alu.setX(614);
 		alu.setY(484.9);
 		alu.setFont(new Font(4));
 		
-		Text barramentoInterno = new Text("Barramento Interno");
+		Text barramentoInterno = new Text(Labels.obterValor("barramentoint"));
 		barramentoInterno.setX(582);
 		barramentoInterno.setY(520);
 		barramentoInterno.setFont(new Font(4));
 		
-		Text unidadeControle = new Text("Unidade de Controle");
+		Text unidadeControle = new Text(Labels.obterValor("uc"));
 		unidadeControle.setX(581);
 		unidadeControle.setY(560);
 		unidadeControle.setFont(new Font(4));
