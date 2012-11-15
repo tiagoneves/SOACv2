@@ -1,5 +1,6 @@
 package br.unipe.simuladores.soac.telas;
 
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -9,9 +10,9 @@ import javafx.scene.paint.Color;
 
 public class TelaErro extends TelaSimplesMensagem{
 
-	public TelaErro(String titulo, Color cor, String mensagem) {
+	public TelaErro(Color cor, String mensagem) {
 		
-		super(titulo, cor, mensagem);
+		super(Labels.obterValor("erro"), cor, mensagem);
 		
 	}
 	

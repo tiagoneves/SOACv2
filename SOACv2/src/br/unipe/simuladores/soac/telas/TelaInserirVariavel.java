@@ -101,11 +101,11 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 					inserirVariavelMemoria();
 					fechar();
 				} catch (DadosInvalidosException die) {
-					TelaErro erro = new TelaErro("Erro", Color.rgb(245, 245, 245),
+					TelaErro erro = new TelaErro(Color.rgb(245, 245, 245),
 							die.getMessage());
 					erro.exibir();
 				} catch (VariavelExistenteException vee) {
-					TelaErro erro = new TelaErro("Erro", Color.rgb(245, 245, 245),
+					TelaErro erro = new TelaErro(Color.rgb(245, 245, 245),
 							vee.getMessage());
 					erro.exibir();
 				}

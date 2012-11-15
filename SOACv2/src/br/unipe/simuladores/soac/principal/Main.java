@@ -21,7 +21,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		
 		//carrega o arquivo de labels
-		Labels.carregar(Idioma.INGLES_US);
+		Labels.carregar(Idioma.PORTUGUES_BR);
 		
 		 //Ajusta a cena para ocupar toda a tela do monitor
         Rectangle2D tela = Screen.getPrimary().getVisualBounds();

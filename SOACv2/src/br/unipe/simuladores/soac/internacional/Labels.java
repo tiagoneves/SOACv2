@@ -16,8 +16,8 @@ public class Labels {
 		String nomeArquivo = null;
 		
 		switch(idioma){
-		case PORTUGUES_BR: nomeArquivo = "Labels_PT-BR"; break;
-		case INGLES_US: nomeArquivo = "Labels_EN-US"; break;
+		case PORTUGUES_BR: nomeArquivo = "Labels_pt-BR"; break;
+		case INGLES_US: nomeArquivo = "Labels_en-US"; break;
 		}
 		
 		resourceBundle = ResourceBundle.getBundle("br.unipe.simuladores.soac.internacional."+nomeArquivo);

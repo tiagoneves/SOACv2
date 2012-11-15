@@ -155,7 +155,7 @@ public class EntradaSaida extends ComponenteCirculo{
 		legiveisMaquina.setFont(new Font(5));
 		
 		Text comunicacaoDispositivosRemotos = 
-				new Text("    "+Labels.obterValor("comunicacaodisprem"));
+				new Text(Labels.obterValor("comunicacaodisprem"));
 		comunicacaoDispositivosRemotos.setX(500);
 		comunicacaoDispositivosRemotos.setY(340);
 		comunicacaoDispositivosRemotos.setFont(new Font(5));

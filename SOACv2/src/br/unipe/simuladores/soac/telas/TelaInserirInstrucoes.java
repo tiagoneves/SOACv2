@@ -146,7 +146,7 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 				} catch(DadosInvalidosException die) {
 					
 					TelaErro erro = new TelaErro
-							("Erro", Color.rgb(245, 245, 245), die.getMessage());
+							(Color.rgb(245, 245, 245), die.getMessage());
 					
 					erro.exibir();
 					
