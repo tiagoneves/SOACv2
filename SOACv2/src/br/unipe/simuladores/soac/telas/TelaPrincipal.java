@@ -5,6 +5,8 @@ import br.unipe.simuladores.soac.botoes.BotaoStop;
 import br.unipe.simuladores.soac.componentes.circulos.Computador;
 import br.unipe.simuladores.soac.componentes.internos.unidades.VariavelIdentificador;
 import br.unipe.simuladores.soac.enums.OpcaoJanelaMensagem;
+import br.unipe.simuladores.soac.internacional.Configuracao;
+import br.unipe.simuladores.soac.internacional.Idioma;
 import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -147,6 +149,7 @@ public class TelaPrincipal extends Tela{
 		ToggleGroup tgGroupMensagem = new ToggleGroup();
 		Menu janela = new Menu(Labels.obterValor("janela"));
 		Menu mensagens = new Menu(Labels.obterValor("mensagens"));
+		
 		RadioMenuItem exibir = new RadioMenuItem(Labels.obterValor("exibir"));
 		exibir.setToggleGroup(tgGroupMensagem);
 		mensagens.getItems().add(exibir);
@@ -254,6 +257,55 @@ public class TelaPrincipal extends Tela{
 		
 		janela.getItems().add(var);
 		
+		ToggleGroup tgGroupIdioma = new ToggleGroup();
+		Menu idioma = new Menu(Labels.obterValor("idioma"));
+		
+		RadioMenuItem portugues = new RadioMenuItem(Labels.obterValor("portugues"));
+		portugues.setToggleGroup(tgGroupIdioma);
+		idioma.getItems().add(portugues);
+		
+		portugues.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				Configuracao.setIdioma(Idioma.PORTUGUES_BR);
+				
+				TelaAviso aviso = new TelaAviso
+						(Color.rgb(245, 245, 245), Labels.obterValor("avisoidioma"));
+				
+				aviso.exibir();
+				
+			}
+			
+		});
+		
+		RadioMenuItem ingles = new RadioMenuItem(Labels.obterValor("ingles"));
+		ingles.setToggleGroup(tgGroupIdioma);
+		idioma.getItems().add(ingles);
+		
+		ingles.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				Configuracao.setIdioma(Idioma.INGLES_US);
+				
+				TelaAviso aviso = new TelaAviso
+						(Color.rgb(245, 245, 245), Labels.obterValor("avisoidioma"));
+				
+				aviso.exibir();
+				
+			}
+			
+		});
+		
+		Idioma idiom = Configuracao.getIdioma();
+		switch(idiom){
+		case PORTUGUES_BR: tgGroupIdioma.selectToggle(portugues); break;
+		case INGLES_US: tgGroupIdioma.selectToggle(ingles); break;
+		}
+		
 		Menu ajuda = new Menu(Labels.obterValor("ajuda"));
 		MenuItem sobre = new MenuItem(Labels.obterValor("sobre"));
 		ajuda.getItems().add(sobre);
@@ -269,9 +321,12 @@ public class TelaPrincipal extends Tela{
 			
 		});
 		
+		
+		
 		menuBar.getMenus().add(inserir);
 		menuBar.getMenus().add(janela);
 		menuBar.getMenus().add(outros);
+		menuBar.getMenus().add(idioma);
 		menuBar.getMenus().add(ajuda);
 		
 		menuBar.setMinWidth(Screen.getPrimary().getVisualBounds().getWidth());

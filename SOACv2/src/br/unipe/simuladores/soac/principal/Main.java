@@ -1,5 +1,6 @@
 package br.unipe.simuladores.soac.principal;
 
+import br.unipe.simuladores.soac.internacional.Configuracao;
 import br.unipe.simuladores.soac.internacional.Idioma;
 import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
@@ -20,8 +21,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
+		//carrega o aquivo de configurações
+		Configuracao.carregar();
+		
 		//carrega o arquivo de labels
-		Labels.carregar(Idioma.PORTUGUES_BR);
+		Labels.carregar(Configuracao.getIdioma());
 		
 		 //Ajusta a cena para ocupar toda a tela do monitor
         Rectangle2D tela = Screen.getPrimary().getVisualBounds();
