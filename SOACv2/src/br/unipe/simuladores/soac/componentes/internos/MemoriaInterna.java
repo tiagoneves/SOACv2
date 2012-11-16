@@ -11,10 +11,12 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteInterno;
 import br.unipe.simuladores.soac.componentes.internos.unidades.Instrucao;
 import br.unipe.simuladores.soac.componentes.internos.unidades.Variavel;
 import br.unipe.simuladores.soac.excecoes.VariavelExistenteException;
+import br.unipe.simuladores.soac.internacional.Labels;
 
 public class MemoriaInterna extends ComponenteInterno{
 	
@@ -74,42 +76,44 @@ public class MemoriaInterna extends ComponenteInterno{
         
         TableColumn<Instrucao, Integer> enderecoColInst = 
         		new TableColumn<Instrucao, Integer>();
-        enderecoColInst.setText("Endereço");
+        enderecoColInst.setText(Labels.obterValor("endereco"));
         enderecoColInst.setCellValueFactory(
         		new PropertyValueFactory<Instrucao, Integer>("endereco"));
         TableColumn<Instrucao, Integer> opcodeCol = 
         		new TableColumn<Instrucao, Integer>();
-        opcodeCol.setText("Opcode");
+        opcodeCol.setText(Labels.obterValor("opcode"));
         opcodeCol.setCellValueFactory(
         		new PropertyValueFactory<Instrucao, Integer>("opcode"));
         TableColumn<Instrucao, Integer> referenciaOp1Col = 
         		new TableColumn<Instrucao, Integer>();
-        referenciaOp1Col.setText("Operando 1");
+        referenciaOp1Col.setText(Labels.obterValor("operando1"));
         referenciaOp1Col.setCellValueFactory(
         		new PropertyValueFactory<Instrucao, Integer>("referenciaOp1"));
         TableColumn<Instrucao, Integer> referenciaOp2Col = 
         		new TableColumn<Instrucao, Integer>();
-        referenciaOp2Col.setText("Operando 2");
+        referenciaOp2Col.setText(Labels.obterValor("operando2"));
         referenciaOp2Col.setCellValueFactory(
         		new PropertyValueFactory<Instrucao, Integer>("referenciaOp2"));
         
         TableColumn<Variavel, Integer> enderecoColDado = 
         		new TableColumn<Variavel, Integer>();
-        enderecoColDado.setText("Endereço");
+        enderecoColDado.setText(Labels.obterValor("endereco"));
         enderecoColDado.setCellValueFactory(
         		new PropertyValueFactory<Variavel, Integer>("endereco"));
         TableColumn<Variavel, String> dataCol = 
         		new TableColumn<Variavel, String>();
-        dataCol.setText("Dado");
+        dataCol.setText(Labels.obterValor("dado"));
         dataCol.setCellValueFactory(
         		new PropertyValueFactory<Variavel, String>("data"));
                
         tabelaInstrucoes = new TableView<Instrucao>();
+        tabelaInstrucoes.setPlaceholder(new Text(Labels.obterValor("memoriaseminst")));
         tabelaInstrucoes.setItems(instrucoes);
         tabelaInstrucoes.getColumns().addAll(enderecoColInst, opcodeCol, referenciaOp1Col, 
         		referenciaOp2Col);
         
         tabelaVariaveis = new TableView<Variavel>();
+        tabelaVariaveis.setPlaceholder(new Text(Labels.obterValor("memoriasemdados")));
         tabelaVariaveis.setItems(variaveis);
         tabelaVariaveis.getColumns().clear();
         dataCol.setMinWidth(230);
@@ -120,13 +124,13 @@ public class MemoriaInterna extends ComponenteInterno{
         tabPane.setMaxHeight(330);
         
         Tab instrucoesTab = new Tab();
-        instrucoesTab.setText("Instruções");
+        instrucoesTab.setText(Labels.obterValor("instrucoes"));
         instrucoesTab.setContent(tabelaInstrucoes);
         
         tabPane.getTabs().add(instrucoesTab);
         
         Tab dadosTab = new Tab();
-        dadosTab.setText("Dados");
+        dadosTab.setText(Labels.obterValor("dados"));
         dadosTab.setContent(tabelaVariaveis);
         
         tabPane.getTabs().add(dadosTab);

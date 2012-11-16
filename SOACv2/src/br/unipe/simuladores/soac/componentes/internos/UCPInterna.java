@@ -17,6 +17,7 @@ import br.unipe.simuladores.soac.componentes.internos.unidades.Registrador;
 import br.unipe.simuladores.soac.componentes.internos.unidades.UC;
 import br.unipe.simuladores.soac.componentes.internos.unidades.ULA;
 import br.unipe.simuladores.soac.componentes.internos.unidades.UnidadeUCP;
+import br.unipe.simuladores.soac.internacional.Labels;
 
 public class UCPInterna extends ComponenteInterno{
 	
@@ -46,17 +47,17 @@ public class UCPInterna extends ComponenteInterno{
 	@Override
 	protected void adicionarTexto() {
 		
-		Text ucp = new Text("UCP");
+		Text ucp = new Text(Labels.obterValor("ucpabrev"));
 		ucp.setX(880);
 		ucp.setY(400);
 		ucp.setFont(new Font(14));
 		
-		Text ioar = new Text("I/O AR");
+		Text ioar = new Text(Labels.obterValor("ioar"));
 		ioar.setX(787);
 		ioar.setY(588);
 		ioar.setFont(new Font(12));
 		
-		Text iobr = new Text("I/O BR");
+		Text iobr = new Text(Labels.obterValor("iobr"));
 		iobr.setX(787);
 		iobr.setY(638);
 		iobr.setFont(new Font(12));
@@ -116,9 +117,9 @@ public class UCPInterna extends ComponenteInterno{
 		Registrador registrador;
 		int i, y;
 		for (i = 0, y = 0; i < 4; i++, y += 25) {
-			registrador = new Registrador("R"+(i + 1), y);
+			registrador = new Registrador(Labels.obterValor("r")+(i + 1), y);
 			atualizarUnidadeTela(registrador);
-			mapaRegistradores.put("R"+(i + 1), registrador);
+			mapaRegistradores.put(Labels.obterValor("r")+(i + 1), registrador);
 		}
 		
 		group.setVisible(false);
@@ -155,13 +156,13 @@ public class UCPInterna extends ComponenteInterno{
 	
 	public Integer obterEnderecoRegistrador(String reg) {
 		
-		if (reg.equalsIgnoreCase("R1")) 
+		if (reg.equalsIgnoreCase(Labels.obterValor("r")+"1")) 
 			return 1;
-		else if (reg.equalsIgnoreCase("R2")) 
+		else if (reg.equalsIgnoreCase(Labels.obterValor("r")+"2")) 
 			return 2;
-		else if (reg.equalsIgnoreCase("R3")) 
+		else if (reg.equalsIgnoreCase(Labels.obterValor("r")+"3")) 
 			return 3;
-		else if (reg.equalsIgnoreCase("R4")) 
+		else if (reg.equalsIgnoreCase(Labels.obterValor("r")+"4")) 
 			return 4;
 		
 		return 0;
@@ -191,7 +192,7 @@ public class UCPInterna extends ComponenteInterno{
 	
 	public Registrador obterRegistrador(Integer numero) {
 		
-		return mapaRegistradores.get("R"+numero);
+		return mapaRegistradores.get(Labels.obterValor("r")+numero);
 		
 	}
 

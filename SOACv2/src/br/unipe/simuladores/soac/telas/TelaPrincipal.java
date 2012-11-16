@@ -37,8 +37,8 @@ public class TelaPrincipal extends Tela{
 	private static TitledPane mensagem;
 	private static TitledPane variaveis;
 	
-	private static final Text defaultContentMensagem = new Text("Não há mensagens");
-	private static final Text defaultContentVariaveis = new Text("Não há variáveis");
+	private static final Text defaultContentMensagem = new Text(Labels.obterValor("conteudodefaultmensagem"));
+	private static final Text defaultContentVariaveis = new Text(Labels.obterValor("conteudodefaultvariaveis"));
 	private static OpcaoJanelaMensagem opcaoJanelaMensagem;
 	private static boolean exibirMensagensDeSimulacao = true;
 	private static TableView<VariavelIdentificador> tabVariaveis;
@@ -341,7 +341,7 @@ public class TelaPrincipal extends Tela{
 	private TitledPane criarTitledPaneMensagem() {
 		
 		TitledPane mensagem = new TitledPane();
-		mensagem.setText("Mensagem");
+		mensagem.setText(Labels.obterValor("mensagem"));
 		mensagem.setContent(defaultContentMensagem);
 		mensagem.setVisible(true);
 		setOpcaoJanelaMensagem(OpcaoJanelaMensagem.EXIBIR);
@@ -353,7 +353,7 @@ public class TelaPrincipal extends Tela{
 	private TitledPane criarTitledPaneVariaveis() {
 		
 		TitledPane variaveis = new TitledPane();
-		variaveis.setText("Variáveis");
+		variaveis.setText(Labels.obterValor("variaveis"));
 		variaveis.setContent(defaultContentVariaveis);
 		
 		return variaveis;
@@ -363,6 +363,7 @@ public class TelaPrincipal extends Tela{
 	private void criarTabelaVariaveis() {
 		
 		tabVariaveis = new TableView<VariavelIdentificador>();
+		tabVariaveis.setPlaceholder(new Text(Labels.obterValor("conteudodefaultvariaveis")));
 		TableColumn<VariavelIdentificador, String> idCol = 
         		new TableColumn<VariavelIdentificador, String>();
 		idCol.setText("ID");

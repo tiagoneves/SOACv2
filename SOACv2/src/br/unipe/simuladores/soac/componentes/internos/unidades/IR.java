@@ -1,5 +1,6 @@
 package br.unipe.simuladores.soac.componentes.internos.unidades;
 
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -39,7 +40,7 @@ public class IR extends UnidadeUCP{
 	@Override
 	public void adicionarTexto(double x, double y) {
 		
-		txtNome = new Text("IR");
+		txtNome = new Text(Labels.obterValor("ir"));
 		txtNome.setX(x);
 		txtNome.setY(y);
 		txtNome.setFont(new Font(12));

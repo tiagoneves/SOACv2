@@ -6,6 +6,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import br.unipe.simuladores.soac.enums.OperacaoAritmetica;
 import br.unipe.simuladores.soac.enums.TipoVariavel;
+import br.unipe.simuladores.soac.internacional.Labels;
 
 public class ULA extends UnidadeUCP{
 	
@@ -249,7 +250,7 @@ public class ULA extends UnidadeUCP{
 	@Override
 	public void adicionarTexto(double x, double y) {
 		
-		txtNome = new Text("ULA");
+		txtNome = new Text(Labels.obterValor("ulaabrev"));
 		txtNome.setX(x);
 		txtNome.setY(y);
 		txtNome.setFont(new Font(12));

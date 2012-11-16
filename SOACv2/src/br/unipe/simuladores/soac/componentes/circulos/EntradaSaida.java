@@ -24,6 +24,8 @@ public class EntradaSaida extends ComponenteCirculo{
 	private Group grupoLegiveisMaquina;
 	private Group grupoComunicacaoDispositivosRemotos;
 	
+	private static final String ENTRADA_SAIDATXT = Labels.obterValor("entradasaidatxt");
+	
 	public EntradaSaida() {
 		
 		super();
@@ -238,7 +240,7 @@ public class EntradaSaida extends ComponenteCirculo{
 	@Override
 	public String obterTextoExplicativo() {
 		
-		return "Isso é um dispositivo de E/S";
+		return ENTRADA_SAIDATXT;
 		
 	}
 

@@ -26,10 +26,7 @@ public class MemoriaPrincipal extends ComponenteCirculoQuebravel{
 	
 	private MemoriaInterna memoriaInterna;
 	
-	private static final String MEMORIA_PRINCIPALTXT =  "Essa figura representa uma " +
-			"memória principal.\n A memória principal " +
-			"pode armazenar tanto instruções\n quanto dados. Para visualizar " +
-			"melhor a organização da\n memória principal, clique nesse círculo.";
+	private static final String MEMORIA_PRINCIPALTXT = Labels.obterValor("memoriaprincipaltxt");
 	
 	public MemoriaPrincipal(){
 		

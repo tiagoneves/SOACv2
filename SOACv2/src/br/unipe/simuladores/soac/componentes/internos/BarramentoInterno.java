@@ -5,6 +5,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteInterno;
+import br.unipe.simuladores.soac.internacional.Labels;
 
 public class BarramentoInterno extends ComponenteInterno {
 	
@@ -31,17 +32,17 @@ public class BarramentoInterno extends ComponenteInterno {
 	@Override
 	protected void adicionarTexto() {
 		
-		Text enderecos = new Text("instruções");
+		Text enderecos = new Text(Labels.obterValor("instrucoesmin"));
 		enderecos.setX(1090);
 		enderecos.setY(620);
 		enderecos.setFont(new Font(10));
 		
-		Text instrucoes = new Text("endereços");
+		Text instrucoes = new Text(Labels.obterValor("enderecosmin"));
 		instrucoes.setX(1145);
 		instrucoes.setY(620);
 		instrucoes.setFont(new Font(10));
 		
-		Text dados = new Text("dados");
+		Text dados = new Text(Labels.obterValor("dadosmin"));
 		dados.setX(1201);
 		dados.setY(620);
 		dados.setFont(new Font(10));
