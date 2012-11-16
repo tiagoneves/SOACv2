@@ -21,11 +21,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		//carrega o aquivo de configurações
-		Configuracao.carregar();
-		
 		//carrega o arquivo de labels
-		Labels.carregar(Configuracao.getIdioma());
+		Labels.carregar(Configuracao.obterInstancia().getIdioma());
 		
 		 //Ajusta a cena para ocupar toda a tela do monitor
         Rectangle2D tela = Screen.getPrimary().getVisualBounds();

@@ -1,91 +1,124 @@
 package br.unipe.simuladores.soac.internacional;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Enumeration;
 import java.util.Properties;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
 import br.unipe.simuladores.soac.enums.OpcaoJanelaMensagem;
 
 public class Configuracao {
 	
-	private static Idioma idioma;
-	private static OpcaoJanelaMensagem opcaoJanelaMensagem;
-	private static boolean exibirMensagensDeSimulacao;
-	private static boolean exibirVariaveis;
+	private Idioma idioma;
+	private OpcaoJanelaMensagem opcaoJanelaMensagem;
+	private boolean exibirMensagensDeSimulacao;
+	private boolean exibirVariaveis;
 	
-	private static ResourceBundle resourceBundle;
+	private ResourceBundle resourceBundle;
 	
-	public static void carregar() {
+	private static Configuracao instancia;
+	
+	private Configuracao() {
 		
-		resourceBundle = ResourceBundle.getBundle("config");
-		Enumeration<String> keys = resourceBundle.getKeys();
-		
-		String key;
-		int valorNum;
-		
-		while(keys.hasMoreElements()) {
-			
-			key = keys.nextElement();
-			
-			if (key.equals("variaveis")) {
-				
-				valorNum = Integer.parseInt(resourceBundle.getString(key));
-				
-				if (valorNum == 0)
-					exibirVariaveis = false;
-				else
-					exibirVariaveis = true;
-				
-			} else if(key.equals("mensagens")) {
-				
-				valorNum = Integer.parseInt(resourceBundle.getString(key));
-				
-				switch(valorNum){
-				case 1: opcaoJanelaMensagem = OpcaoJanelaMensagem.EXIBIR; break;
-				case 2: opcaoJanelaMensagem = OpcaoJanelaMensagem.ESCONDER; break;
-				case 3: opcaoJanelaMensagem = OpcaoJanelaMensagem.NAO_EXIBIR; break;
-				}
-				
-			} else if (key.equals("exibirmensagens")) {
-				
-				valorNum = Integer.parseInt(resourceBundle.getString(key));
-				
-				if (valorNum == 0)
-					exibirMensagensDeSimulacao = false;
-				else
-					exibirMensagensDeSimulacao = true;
-				
-			} else {
-				
-				String valor = resourceBundle.getString(key);
-				
-				if (valor.equals("ptbr")) 
-					idioma = Idioma.PORTUGUES_BR;
-				else if (valor.equals("enus"))
-					idioma = Idioma.INGLES_US;
-				
-			}
-		
-		}
+		carregar();
 		
 	}
 	
-	public static void atualizar() {
+	public static Configuracao obterInstancia() {
+		
+		if (instancia == null)
+			instancia = new Configuracao();
+		
+		return instancia;
+		
+	}
+	
+	private void carregar() {
+		
+		FileInputStream fis;
+		
+		try {
+			
+			fis = new FileInputStream("resources/config.properties");
+			resourceBundle = new PropertyResourceBundle(fis);
+			fis.close();
+			
+			Enumeration<String> keys = resourceBundle.getKeys();
+			
+			String key;
+			int valorNum;
+			
+			while(keys.hasMoreElements()) {
+				
+				key = keys.nextElement();
+				
+				if (key.equals("variaveis")) {
+					
+					valorNum = Integer.parseInt(resourceBundle.getString(key));
+					
+					if (valorNum == 0)
+						exibirVariaveis = false;
+					else
+						exibirVariaveis = true;
+					
+				} else if(key.equals("mensagens")) {
+					
+					valorNum = Integer.parseInt(resourceBundle.getString(key));
+					
+					switch(valorNum){
+					case 1: opcaoJanelaMensagem = OpcaoJanelaMensagem.EXIBIR; break;
+					case 2: opcaoJanelaMensagem = OpcaoJanelaMensagem.ESCONDER; break;
+					case 3: opcaoJanelaMensagem = OpcaoJanelaMensagem.NAO_EXIBIR; break;
+					}
+					
+				} else if (key.equals("exibirmensagens")) {
+					
+					valorNum = Integer.parseInt(resourceBundle.getString(key));
+					
+					if (valorNum == 0)
+						exibirMensagensDeSimulacao = false;
+					else
+						exibirMensagensDeSimulacao = true;
+					
+				} else {
+					
+					String valor = resourceBundle.getString(key);
+					
+					if (valor.equals("ptbr")) 
+						idioma = Idioma.PORTUGUES_BR;
+					else if (valor.equals("enus"))
+						idioma = Idioma.INGLES_US;
+					
+				}
+			
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+	}
+	
+	public void atualizar() {
 		
 		String idiom = null;
 		
-		switch(Configuracao.idioma) {
+		switch(idioma) {
 		case PORTUGUES_BR: idiom = "ptbr"; break;
 		case INGLES_US: idiom = "enus"; break;
 		}
 		
 		String mensagens = null;
 		
-		switch(Configuracao.opcaoJanelaMensagem) {
+		switch(opcaoJanelaMensagem) {
 		case EXIBIR: mensagens = "1"; break;
 		case ESCONDER: mensagens = "2"; break;
 		case NAO_EXIBIR: mensagens = "3"; break;
@@ -106,7 +139,7 @@ public class Configuracao {
 			else
 				properties.setProperty("variaveis", "0");
 			
-			File file = new File("src/config.properties");
+			File file = new File("resources/config.properties");
 			FileOutputStream fileOut = new FileOutputStream(file);
 			properties.store(fileOut, "Configuracao");
 			fileOut.close();
@@ -115,54 +148,54 @@ public class Configuracao {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 		
 	}
 
-	public static Idioma getIdioma() {
+	public Idioma getIdioma() {
 		return idioma;
 	}
 
-	public static void setIdioma(Idioma idioma) {
+	public void setIdioma(Idioma idioma) {
 		
-		Configuracao.idioma = idioma;
+		this.idioma = idioma;
 		
 		atualizar();
 		
 	}
 
-	public static OpcaoJanelaMensagem getOpcaoJanelaMensagem() {
+	public OpcaoJanelaMensagem getOpcaoJanelaMensagem() {
 		return opcaoJanelaMensagem;
 	}
 
-	public static void setOpcaoJanelaMensagem(
+	public void setOpcaoJanelaMensagem(
 			OpcaoJanelaMensagem opcaoJanelaMensagem) {
-		Configuracao.opcaoJanelaMensagem = opcaoJanelaMensagem;
+		this.opcaoJanelaMensagem = opcaoJanelaMensagem;
 	}
 
-	public static boolean isExibirMensagensDeSimulacao() {
+	public boolean isExibirMensagensDeSimulacao() {
 		return exibirMensagensDeSimulacao;
 	}
 
-	public static void setExibirMensagensDeSimulacao(
+	public void setExibirMensagensDeSimulacao(
 			boolean exibirMensagensDeSimulacao) {
-		Configuracao.exibirMensagensDeSimulacao = exibirMensagensDeSimulacao;
+		this.exibirMensagensDeSimulacao = exibirMensagensDeSimulacao;
 	}
 
-	public static boolean isExibirVariaveis() {
+	public boolean isExibirVariaveis() {
 		return exibirVariaveis;
 	}
 
-	public static void setExibirVariaveis(boolean exibirVariaveis) {
-		Configuracao.exibirVariaveis = exibirVariaveis;
+	public void setExibirVariaveis(boolean exibirVariaveis) {
+		this.exibirVariaveis = exibirVariaveis;
 	}
 
-	public static ResourceBundle getResourceBundle() {
+	public ResourceBundle getResourceBundle() {
 		return resourceBundle;
 	}
 
-	public static void setResourceBundle(ResourceBundle resourceBundle) {
-		Configuracao.resourceBundle = resourceBundle;
+	public void setResourceBundle(ResourceBundle resourceBundle) {
+		this.resourceBundle = resourceBundle;
 	}
 	
 

@@ -269,7 +269,7 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent arg0) {
 				
-				Configuracao.setIdioma(Idioma.PORTUGUES_BR);
+				Configuracao.obterInstancia().setIdioma(Idioma.PORTUGUES_BR);
 				
 				TelaAviso aviso = new TelaAviso
 						(Color.rgb(245, 245, 245), Labels.obterValor("avisoidioma"));
@@ -289,7 +289,7 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent arg0) {
 				
-				Configuracao.setIdioma(Idioma.INGLES_US);
+				Configuracao.obterInstancia().setIdioma(Idioma.INGLES_US);
 				
 				TelaAviso aviso = new TelaAviso
 						(Color.rgb(245, 245, 245), Labels.obterValor("avisoidioma"));
@@ -300,7 +300,7 @@ public class TelaPrincipal extends Tela{
 			
 		});
 		
-		Idioma idiom = Configuracao.getIdioma();
+		Idioma idiom = Configuracao.obterInstancia().getIdioma();
 		switch(idiom){
 		case PORTUGUES_BR: tgGroupIdioma.selectToggle(portugues); break;
 		case INGLES_US: tgGroupIdioma.selectToggle(ingles); break;

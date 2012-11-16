@@ -48,8 +48,17 @@
 				</fileset>
 			</copy>
 	</target>
+	
+	<target name="resources" depends ="imagens">
+		   <mkdir dir="dist/resources"/>
+			<copy todir="${basedir}/dist/resources">
+				<fileset dir="${basedir}/resources">
+					<include name = "*.properties"/>
+				</fileset>
+			</copy>
+	</target>
  
-    <target name="deploy" depends="imagens">
+    <target name="deploy" depends="resources">
         <delete file="jar/${nomeAplicacao}.jar"/>
         <fxjar destfile="jar/${nomeAplicacao}.jar">
         	<application mainClass="br.unipe.simuladores.soac.principal.Main"/>

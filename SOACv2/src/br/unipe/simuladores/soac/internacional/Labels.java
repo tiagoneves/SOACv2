@@ -1,8 +1,12 @@
 package br.unipe.simuladores.soac.internacional;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -20,17 +24,30 @@ public class Labels {
 		case INGLES_US: nomeArquivo = "Labels_en-US"; break;
 		}
 		
-		resourceBundle = ResourceBundle.getBundle("br.unipe.simuladores.soac.internacional."+nomeArquivo);
-		Enumeration<String> keys = resourceBundle.getKeys();
+		FileInputStream fis;
 		
-		while(keys.hasMoreElements()) {
+		try {
 			
-			String key = keys.nextElement();
-			String valor = resourceBundle.getString(key);
+			fis = new FileInputStream("resources/"+nomeArquivo+".properties");
+			resourceBundle = new PropertyResourceBundle(fis);
+			fis.close();
 			
-			labels.put(key, valor);
+			Enumeration<String> keys = resourceBundle.getKeys();
 			
-		}
+			while(keys.hasMoreElements()) {
+				
+				String key = keys.nextElement();
+				String valor = resourceBundle.getString(key);
+				
+				labels.put(key, valor);
+				
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		
 	}
 	
