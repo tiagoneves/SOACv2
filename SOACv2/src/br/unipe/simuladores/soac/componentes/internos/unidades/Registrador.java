@@ -1,5 +1,6 @@
 package br.unipe.simuladores.soac.componentes.internos.unidades;
 
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -9,9 +10,7 @@ public class Registrador extends UnidadeUCP{
 
 	private String nome;
 	
-	private static final String REGISTRADOR_TXT = "Os registradores armazenam dados " +
-			"e referências à memória.\n O tempo de acesso aos registradores é muito " +
-			"mais rápido,\n se comparado ao da memória principal.\n";
+	private static final String REGISTRADOR_TXT = Labels.obterValor("registradorestxt");
 
 	public Registrador(String nome, double y) {
 		

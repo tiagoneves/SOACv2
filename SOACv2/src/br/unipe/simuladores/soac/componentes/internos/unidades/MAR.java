@@ -8,10 +8,7 @@ import javafx.scene.text.Text;
 
 public class MAR extends UnidadeUCP{
 	
-	private static final String MAR_TXT = "O MAR (Memory Address Register) é " +
-			"responsável por\n armazenar as referências de endereços de memória\n" +
-			"que serão transferidas para o barramento de endereços\n numa leitura " +
-			"de um dado ou instrução da memória principal.";
+	private static final String MAR_TXT = Labels.obterValor("martxt");
 
 	public MAR() {
 		

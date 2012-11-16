@@ -32,12 +32,6 @@ public class UCPInterna extends ComponenteInterno{
 	private Rectangle iobr;
 	private Map<String, Registrador> mapaRegistradores;
 	
-	private static final String UCP_INTERNATXT = "Essa figura representa a UCP " +
-			"interna.\n A UCP é responsável pela execução das instruções\n da memória " +
-			"principal. Para isso, ela possui alguns\n componentes internos para " +
-			"auxiliar nessa tarefa.\n Para saber mais detalhes sobre cada um desses\n " +
-			"componentes, passe o mouse por cima de cada um deles.";
-	
 	public UCPInterna() {
 		
 		super();
@@ -257,7 +251,7 @@ public class UCPInterna extends ComponenteInterno{
 	@Override
 	public String obterTextoExplicativo() {
 
-		return UCP_INTERNATXT;
+		return "";
 		
 	}
 

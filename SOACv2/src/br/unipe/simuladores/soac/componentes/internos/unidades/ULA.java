@@ -10,9 +10,7 @@ import br.unipe.simuladores.soac.internacional.Labels;
 
 public class ULA extends UnidadeUCP{
 	
-	private static final String ULA_TXT = "A ULA (Unidade Lógica e Aritmética) é " +
-			"a reponsável\n por executar operações aritméticas, como somar,\nsubtrair, " +
-			"multiplicar e dividir.";
+	private static final String ULA_TXT = Labels.obterValor("ulatxt");
 	
 	private String operando1;
 	private String operando2;

@@ -265,9 +265,7 @@ public class SistemaInterconexao extends ComponenteCirculoQuebravel{
 	@Override
 	public String obterTextoExplicativo() {
 		
-		return "Esse componente faz parte do sistema de\n interconexão. " +
-				"Para ver mais detalhes sobre\n algum desses componentes" +
-				" clique no círculo\n \"Barramento\" ou \"Módulo de E/S\"";
+		return Labels.obterValor("barramentotxt");
 		
 	}
 

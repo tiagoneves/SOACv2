@@ -1,11 +1,8 @@
 package br.unipe.simuladores.soac.componentes.interfaces;
 
-import br.unipe.simuladores.soac.enums.OpcaoJanelaMensagem;
-import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 
 public abstract class ComponenteExpansivel extends Componente{
 	
