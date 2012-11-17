@@ -113,7 +113,7 @@ public class TelaPrincipal extends Tela{
 		variavel.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	TelaInserirVariavel inserirVariavel = 
-		    			new TelaInserirVariavel("Inserir Variável", 
+		    			new TelaInserirVariavel(Labels.obterValor("inserirvariavel"), 
 		    					Color.rgb(245, 245, 245));
 		    	inserirVariavel.exibir();
 		    }
@@ -366,21 +366,21 @@ public class TelaPrincipal extends Tela{
 		tabVariaveis.setPlaceholder(new Text(Labels.obterValor("conteudodefaultvariaveis")));
 		TableColumn<VariavelIdentificador, String> idCol = 
         		new TableColumn<VariavelIdentificador, String>();
-		idCol.setText("ID");
+		idCol.setText(Labels.obterValor("identificadorabrev"));
 		idCol.setPrefWidth(40);
 		idCol.setCellValueFactory(
         		new PropertyValueFactory<VariavelIdentificador, String>("id"));
 		
 		TableColumn<VariavelIdentificador, String> endCol = 
         		new TableColumn<VariavelIdentificador, String>();
-		endCol.setText("END");
+		endCol.setText(Labels.obterValor("enderecoabrev"));
 		endCol.setPrefWidth(47);
 		endCol.setCellValueFactory(
         		new PropertyValueFactory<VariavelIdentificador, String>("endereco"));
 		
 		TableColumn<VariavelIdentificador, String> dataCol = 
         		new TableColumn<VariavelIdentificador, String>();
-		dataCol.setText("Dado");
+		dataCol.setText(Labels.obterValor("dado"));
 		dataCol.setCellValueFactory(
         		new PropertyValueFactory<VariavelIdentificador, String>("data"));
 		

@@ -8,6 +8,7 @@ import br.unipe.simuladores.soac.componentes.internos.unidades.VariavelIdentific
 import br.unipe.simuladores.soac.enums.TipoVariavel;
 import br.unipe.simuladores.soac.excecoes.DadosInvalidosException;
 import br.unipe.simuladores.soac.excecoes.VariavelExistenteException;
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,13 +27,13 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 
 	private final TextField tfIdentificador = new TextField();
 	private final ChoiceBox<String> cbTipo = new ChoiceBox<String>();
-	private final Text txtValor = new Text("Valor Inicial:");
+	private final Text txtValor = new Text(Labels.obterValor("valorinicial"));
 	private final TextField tfValor = new TextField();
 	private final ToggleGroup tg = new ToggleGroup();
-	private Button btnInserirVar = new Button("Inserir");
+	private Button btnInserirVar = new Button(Labels.obterValor("inserir"));
 	private TipoVariavel tipoVariavel;
-	private final RadioButton rbNormal = new RadioButton("Normal");
-	private RadioButton rbPonteiro = new RadioButton("Ponteiro");
+	private final RadioButton rbNormal = new RadioButton(Labels.obterValor("normal"));
+	private RadioButton rbPonteiro = new RadioButton(Labels.obterValor("ponteiro"));
 	private Boolean normal;
 	
 	public TelaInserirVariavel(String titulo, Color cor) {		
@@ -49,13 +50,13 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 		
 		HBox hBox1 = new HBox();
 		hBox1.setSpacing(10);
-	    Text txtIdentificador = new Text("Indentificador [A-Z]:");
+	    Text txtIdentificador = new Text(Labels.obterValor("identificador"));
 		hBox1.getChildren().add(txtIdentificador);
 		tfIdentificador.setMaxWidth(50);
 		hBox1.getChildren().add(tfIdentificador);
-		Text txtTipo = new Text("Tipo:");
+		Text txtTipo = new Text(Labels.obterValor("tipo"));
 		hBox1.getChildren().add(txtTipo);
-		cbTipo.getItems().addAll("Inteiro", "Ponto flutuante");
+		cbTipo.getItems().addAll(Labels.obterValor("inteiro"), Labels.obterValor("pontoflutuante"));
 		cbTipo.getSelectionModel().selectFirst();
 		hBox1.getChildren().add(cbTipo);
 		vBox.getChildren().add(hBox1);
@@ -159,23 +160,23 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 			normal = false;
 		
 		if (identificador.isEmpty()) 
-			throw new DadosInvalidosException("Por favor, informe um identificador");
+			throw new DadosInvalidosException(Labels.obterValor("informeidentificador"));
 		
 		if (valor.isEmpty()) 
-			throw new DadosInvalidosException("Por favor, informe um valor");
+			throw new DadosInvalidosException(Labels.obterValor("informevalor"));
 		
 		Pattern padraoId = Pattern.compile("([a-zA-Z])\\w*");
 		Matcher pesquisa = padraoId.matcher(identificador);
 		
 		if(!pesquisa.matches())
-			throw new DadosInvalidosException(identificador+" não é um identificador válido");
+			throw new DadosInvalidosException(identificador+" "+Labels.obterValor("identificadorinvalido"));
 		
 		if (tipoVariavel == TipoVariavel.INTEIRO) {
 			
 			try {
 				Integer.parseInt(valor);
 			}catch(NumberFormatException nfe) {
-				throw new DadosInvalidosException("O valor informado não é um número inteiro");
+				throw new DadosInvalidosException(Labels.obterValor("valornaoehinteiro"));
 			}
 			
 			
@@ -184,7 +185,7 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 			try {
 				Float.parseFloat(valor);
 			}catch(NumberFormatException nfe) {
-				throw new DadosInvalidosException("O valor informado não é um número de ponto flutuante");
+				throw new DadosInvalidosException(Labels.obterValor("valornaoehfloat"));
 			}
 			
 		}
@@ -194,18 +195,17 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 			
 			if(!(tipoVariavel == TipoVariavel.INTEIRO))
 				throw new DadosInvalidosException(
-						"Um ponteiro só pode armazenar valores inteiros");
+						Labels.obterValor("ponteirosoharmazenainteiros"));
 			
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal()
 					.getMemoriaInterna().contemVar(new Integer(valor), true))
-				throw new DadosInvalidosException("Não há variável com o endereço informado");
+				throw new DadosInvalidosException(Labels.obterValor("naohavariavelcomendereco"));
 			
 			if(TelaPrincipal.getComputador().getMemoriaPrincipal()
 					.getMemoriaInterna().ehPonteiro(new Integer(valor), true))
 
 				throw new DadosInvalidosException(
-						"Não é possível, nesse simulador, um ponteiro " +
-						"referenciar outro ponteiro");
+						Labels.obterValor("ponteironaoreferenciaponteiro"));
 			
 		}
 		

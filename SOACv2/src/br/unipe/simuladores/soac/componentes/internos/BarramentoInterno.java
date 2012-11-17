@@ -9,11 +9,7 @@ import br.unipe.simuladores.soac.internacional.Labels;
 
 public class BarramentoInterno extends ComponenteInterno {
 	
-	private static final String BARRAMENTO_INTERNOTXT = "O barramento é por onde " +
-			"fluem os dados ou\ninstruções da memória principal para a UCP, ou\n" +
-			"vice-versa. É formado por três sub-barramentos:\no barramento " +
-			"de instruções, o de endereços e o de\ndados, por onde fluem instruções " +
-			"da UC, endereços\nde memória e dados, respectivamente.";
+	private static final String BARRAMENTO_INTERNOTXT = Labels.obterValor("barramentointernotxt");
 	
 	private Rectangle dados;
 	private Rectangle enderecos;
