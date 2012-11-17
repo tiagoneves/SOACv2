@@ -32,7 +32,7 @@ public class TelaMensagemCicloIndireto extends TelaMensagemSimulacao{
 			"ele referencia, ou seja, o endereço\n que contém o dado.";
 	
 	public TelaMensagemCicloIndireto(EstadoCiclo estado) {
-		super("Mensagem", Color.rgb(245, 245, 245));
+		super(Color.rgb(245, 245, 245));
 		
 		super.estado = estado;
 		
@@ -40,7 +40,7 @@ public class TelaMensagemCicloIndireto extends TelaMensagemSimulacao{
 	}
 	
 	public TelaMensagemCicloIndireto(EstadoCiclo estado, OperandoCicloIndireto operando) {
-		super("Mensagem", Color.rgb(245, 245, 245));
+		super(Color.rgb(245, 245, 245));
 		
 		super.estado = estado;
 		

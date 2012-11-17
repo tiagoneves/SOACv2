@@ -9,7 +9,7 @@ public class TelaFinal extends TelaMensagemSimulacao{
 
 	public TelaFinal() {
 		
-		super("Mensagem", Color.rgb(245, 245, 245));
+		super(Color.rgb(245, 245, 245));
 		
 		modificarMensagem(obterTexto());
 		

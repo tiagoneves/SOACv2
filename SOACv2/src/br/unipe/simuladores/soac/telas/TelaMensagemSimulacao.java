@@ -1,6 +1,7 @@
 package br.unipe.simuladores.soac.telas;
 
 import br.unipe.simuladores.soac.enums.EstadoCiclo;
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -14,9 +15,9 @@ public abstract class TelaMensagemSimulacao extends TelaSimplesMensagem{
 	protected Button cancelar;
 	protected EstadoCiclo estado;
 	
-	public TelaMensagemSimulacao(String titulo, Color cor) {
+	public TelaMensagemSimulacao(Color cor) {
 		
-		super(titulo, cor, "");
+		super(Labels.obterValor("mensagem"), cor, "");
 		
 	}
 
@@ -37,11 +38,11 @@ public abstract class TelaMensagemSimulacao extends TelaSimplesMensagem{
 		
 		root.getChildren().add(vBox);
 		
-		continuar = new Button("Continuar");
+		continuar = new Button(Labels.obterValor("continuar"));
 	
 		hBox.getChildren().add(continuar);
 		
-		cancelar = new Button("Não Mostrar Mensagens");
+		cancelar = new Button(Labels.obterValor("naomostrarmensagens"));
 		
 		hBox.getChildren().add(cancelar);
 		
