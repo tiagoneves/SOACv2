@@ -1,11 +1,11 @@
 package br.unipe.simuladores.soac.telas;
 
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.scene.paint.Color;
 
 public class TelaFinal extends TelaMensagemSimulacao{
 	
-	private static final String MENSAGEM = "Não há mais instruções a serem executadas. " +
-			"Para executar mais instruções, insira-as.";
+	private static final String MENSAGEM = Labels.obterValor("naohamaisinstrucoestxt");
 
 	public TelaFinal() {
 		

@@ -125,7 +125,7 @@ public class TelaPrincipal extends Tela{
 		MenuItem sied = new MenuItem(Labels.obterValor("sied"));
 		sied.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	TelaWebView telaSied = new TelaWebView("Outros Simuladores", Color.WHITE, 
+		    	TelaWebView telaSied = new TelaWebView(Color.WHITE, 
 		    			Screen.getPrimary().getVisualBounds().getHeight(), 
 		    			Screen.getPrimary().getVisualBounds().getWidth(), 
 		    			"http://www.hilariotomaz.com.br/SI-ED/");
@@ -137,7 +137,7 @@ public class TelaPrincipal extends Tela{
 		MenuItem sin = new MenuItem(Labels.obterValor("sin"));
 		sin.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	TelaWebView telaSin = new TelaWebView("Outros Simuladores", Color.WHITE, 
+		    	TelaWebView telaSin = new TelaWebView(Color.WHITE, 
 		    			Screen.getPrimary().getVisualBounds().getHeight(), 
 		    			Screen.getPrimary().getVisualBounds().getWidth(), 
 		    			"http://wrco.ccsa.ufpb.br:8080/SimuladorSO/");

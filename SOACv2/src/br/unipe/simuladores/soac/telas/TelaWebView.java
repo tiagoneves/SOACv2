@@ -1,5 +1,6 @@
 package br.unipe.simuladores.soac.telas;
 
+import br.unipe.simuladores.soac.internacional.Labels;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,8 +20,8 @@ public class TelaWebView extends Tela{
 
 	private String url;
 	
-	public TelaWebView(String titulo, Color cor, double height, double width, String url) {
-		super(titulo, cor, height, width);
+	public TelaWebView(Color cor, double height, double width, String url) {
+		super(Labels.obterValor("outrossimuladores"), cor, height, width);
 		setUrl(url);
 		criar();
 	}
@@ -36,7 +37,7 @@ public class TelaWebView extends Tela{
 		locationField.setMaxHeight(Double.MAX_VALUE);
 		locationField.setMinWidth(500);
 		locationField.setTranslateX(200);
-		Button goButton = new Button("Ir");
+		Button goButton = new Button(Labels.obterValor("ir"));
 		goButton.setTranslateX(400);
 	    goButton.setDefaultButton(true);
 		EventHandler<ActionEvent> goAction = new EventHandler<ActionEvent>() {
