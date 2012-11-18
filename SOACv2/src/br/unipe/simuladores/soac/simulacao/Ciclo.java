@@ -4,8 +4,8 @@ import br.unipe.simuladores.soac.componentes.internos.unidades.IR;
 import br.unipe.simuladores.soac.componentes.internos.unidades.Instrucao;
 import br.unipe.simuladores.soac.componentes.internos.unidades.MBR;
 import br.unipe.simuladores.soac.enums.EstadoCiclo;
+import br.unipe.simuladores.soac.internacional.Configuracao;
 import br.unipe.simuladores.soac.telas.TelaMensagemSimulacao;
-import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -59,7 +59,7 @@ public abstract class Ciclo {
 	
 	protected void nextStep(EstadoCiclo estado) {
 		
-		if (TelaPrincipal.isExibirMensagensDeSimulacao()) {
+		if (Configuracao.obterInstancia().isExibirMensagensDeSimulacao()) {
 			telaMensagem = construirTelaMensagem(estado);
 			telaMensagem.exibir();
 			controlador.setAnimacaoAtual(animation);

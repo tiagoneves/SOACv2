@@ -37,7 +37,7 @@ public class TelaWebView extends Tela{
 		locationField.setMaxHeight(Double.MAX_VALUE);
 		locationField.setMinWidth(500);
 		locationField.setTranslateX(200);
-		Button goButton = new Button(Labels.obterValor("ir"));
+		Button goButton = new Button(Labels.obterValor("irpara"));
 		goButton.setTranslateX(400);
 	    goButton.setDefaultButton(true);
 		EventHandler<ActionEvent> goAction = new EventHandler<ActionEvent>() {

@@ -39,8 +39,6 @@ public class TelaPrincipal extends Tela{
 	
 	private static final Text defaultContentMensagem = new Text(Labels.obterValor("conteudodefaultmensagem"));
 	private static final Text defaultContentVariaveis = new Text(Labels.obterValor("conteudodefaultvariaveis"));
-	private static OpcaoJanelaMensagem opcaoJanelaMensagem;
-	private static boolean exibirMensagensDeSimulacao = true;
 	private static TableView<VariavelIdentificador> tabVariaveis;
 	private static RadioMenuItem opExibirMensSimulacao;
 	
@@ -159,7 +157,9 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent e) {
 				
-				setOpcaoJanelaMensagem(OpcaoJanelaMensagem.EXIBIR);
+				Configuracao.obterInstancia().setOpcaoJanelaMensagem(
+						OpcaoJanelaMensagem.EXIBIR);
+				
 				mensagem.setVisible(true);
 				
 			}
@@ -175,7 +175,9 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent e) {
 				
-				setOpcaoJanelaMensagem(OpcaoJanelaMensagem.ESCONDER);
+				Configuracao.obterInstancia().setOpcaoJanelaMensagem(
+						OpcaoJanelaMensagem.ESCONDER);
+				
 				mensagem.setVisible(false);
 				
 			}
@@ -191,26 +193,35 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent e) {
 				
-				setOpcaoJanelaMensagem(OpcaoJanelaMensagem.NAO_EXIBIR);
+				Configuracao.obterInstancia().setOpcaoJanelaMensagem(
+						OpcaoJanelaMensagem.NAO_EXIBIR);
+				
 				mensagem.setVisible(false);
 				
 			}
 			
 		});
 		
-		tgGroupMensagem.selectToggle(esconder);
+		switch(Configuracao.obterInstancia().getOpcaoJanelaMensagem()) {
+		case ESCONDER: tgGroupMensagem.selectToggle(esconder); break;
+		case EXIBIR: tgGroupMensagem.selectToggle(exibir); break;
+		case NAO_EXIBIR: tgGroupMensagem.selectToggle(naoExibir); break;
+		}
 		
 		opExibirMensSimulacao = new RadioMenuItem(Labels.obterValor("exibirmenssimulacao"));
-		opExibirMensSimulacao.setSelected(true);
 		
-		exibirMensagensDeSimulacao = true;
+		if(Configuracao.obterInstancia().isExibirMensagensDeSimulacao())
+			opExibirMensSimulacao.setSelected(true);
+		else
+			opExibirMensSimulacao.setSelected(false);
 		
 		opExibirMensSimulacao.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent e) {
 				
-				exibirMensagensDeSimulacao = opExibirMensSimulacao.isSelected();
+				Configuracao.obterInstancia().setExibirMensagensDeSimulacao(
+						opExibirMensSimulacao.isSelected());
 				
 			}
 			
@@ -232,6 +243,8 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent e) {
 				
+				Configuracao.obterInstancia().setExibirVariaveis(true);
+				
 				variaveis.setVisible(true);
 				
 			}
@@ -247,13 +260,18 @@ public class TelaPrincipal extends Tela{
 			@Override
 			public void handle(ActionEvent e) {
 				
+				Configuracao.obterInstancia().setExibirVariaveis(false);
+				
 				variaveis.setVisible(false);
 				
 			}
 			
 		});
 		
-		tgGroupVariaveis.selectToggle(exibirVar);
+		if (Configuracao.obterInstancia().isExibirVariaveis())
+			tgGroupVariaveis.selectToggle(exibirVar);
+		else
+			tgGroupVariaveis.selectToggle(naoExibirVar);
 		
 		janela.getItems().add(var);
 		
@@ -343,8 +361,12 @@ public class TelaPrincipal extends Tela{
 		TitledPane mensagem = new TitledPane();
 		mensagem.setText(Labels.obterValor("mensagem"));
 		mensagem.setContent(defaultContentMensagem);
-		mensagem.setVisible(true);
-		setOpcaoJanelaMensagem(OpcaoJanelaMensagem.EXIBIR);
+		
+		switch(Configuracao.obterInstancia().getOpcaoJanelaMensagem()) {
+		case ESCONDER: mensagem.setVisible(false); break;
+		case EXIBIR: mensagem.setVisible(true); break;
+		case NAO_EXIBIR: mensagem.setVisible(false); break;
+		}
 		
 		return mensagem;
 		
@@ -355,6 +377,11 @@ public class TelaPrincipal extends Tela{
 		TitledPane variaveis = new TitledPane();
 		variaveis.setText(Labels.obterValor("variaveis"));
 		variaveis.setContent(defaultContentVariaveis);
+		
+		if (Configuracao.obterInstancia().isExibirVariaveis())
+			variaveis.setVisible(true);
+		else
+			variaveis.setVisible(false);
 		
 		return variaveis;
 		
@@ -459,27 +486,13 @@ public class TelaPrincipal extends Tela{
 		TelaPrincipal.variaveis = variaveis;
 	}
 
-
-	public static OpcaoJanelaMensagem getOpcaoJanelaMensagem() {
-		return opcaoJanelaMensagem;
-	}
-
-
-	public static void setOpcaoJanelaMensagem(
-			OpcaoJanelaMensagem opcaoJanelaMensagem) {
-		TelaPrincipal.opcaoJanelaMensagem = opcaoJanelaMensagem;
-	}
-
-
-	public static boolean isExibirMensagensDeSimulacao() {
-		return exibirMensagensDeSimulacao;
-	}
-
-
-	public static void setExibirMensagensDeSimulacao(
-			boolean exibirMensagensDeSimulacao) {
-		TelaPrincipal.exibirMensagensDeSimulacao = exibirMensagensDeSimulacao;
-		opExibirMensSimulacao.setSelected(exibirMensagensDeSimulacao);
+	public static void exibirMensagensDeSimulacao(
+			boolean exibir) {
+		
+		Configuracao.obterInstancia().setExibirMensagensDeSimulacao(exibir);
+		
+		opExibirMensSimulacao.setSelected(exibir);
+		
 	}
 
 

@@ -76,7 +76,7 @@ public abstract class TelaMensagemSimulacao extends TelaSimplesMensagem{
 			@Override
 			public void handle(ActionEvent arg0) {
 				
-				TelaPrincipal.setExibirMensagensDeSimulacao(false);
+				TelaPrincipal.exibirMensagensDeSimulacao(false);
 				
 				stage.close();
 				

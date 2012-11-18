@@ -1,7 +1,6 @@
 package br.unipe.simuladores.soac.principal;
 
 import br.unipe.simuladores.soac.internacional.Configuracao;
-import br.unipe.simuladores.soac.internacional.Idioma;
 import br.unipe.simuladores.soac.internacional.Labels;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.application.Application;

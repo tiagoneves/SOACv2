@@ -15,6 +15,7 @@ import br.unipe.simuladores.soac.componentes.internos.BarramentoInterno;
 import br.unipe.simuladores.soac.componentes.internos.MemoriaInterna;
 import br.unipe.simuladores.soac.componentes.internos.UCPInterna;
 import br.unipe.simuladores.soac.componentes.internos.unidades.Instrucao;
+import br.unipe.simuladores.soac.internacional.Configuracao;
 import br.unipe.simuladores.soac.telas.TelaFinal;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 
@@ -116,8 +117,10 @@ public class Controlador{
 										
 		} else {
 			
-			TelaFinal telaFinal = new TelaFinal();
-			telaFinal.exibir();
+			if (Configuracao.obterInstancia().isExibirMensagensDeSimulacao()){
+				TelaFinal telaFinal = new TelaFinal();
+				telaFinal.exibir();
+		    }
 			
 			btnPlay.esmaecer();
 			btnStop.esmaecer();

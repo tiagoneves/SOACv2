@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.PropertyResourceBundle;
@@ -107,7 +106,7 @@ public class Configuracao {
 		
 	}
 	
-	public void atualizar() {
+	private void atualizar() {
 		
 		String idiom = null;
 		
@@ -170,7 +169,10 @@ public class Configuracao {
 
 	public void setOpcaoJanelaMensagem(
 			OpcaoJanelaMensagem opcaoJanelaMensagem) {
+		
 		this.opcaoJanelaMensagem = opcaoJanelaMensagem;
+		
+		atualizar();
 	}
 
 	public boolean isExibirMensagensDeSimulacao() {
@@ -179,7 +181,11 @@ public class Configuracao {
 
 	public void setExibirMensagensDeSimulacao(
 			boolean exibirMensagensDeSimulacao) {
+		
 		this.exibirMensagensDeSimulacao = exibirMensagensDeSimulacao;
+		
+		atualizar();
+		
 	}
 
 	public boolean isExibirVariaveis() {
@@ -187,7 +193,11 @@ public class Configuracao {
 	}
 
 	public void setExibirVariaveis(boolean exibirVariaveis) {
+		
 		this.exibirVariaveis = exibirVariaveis;
+		
+		atualizar();
+		
 	}
 
 	public ResourceBundle getResourceBundle() {

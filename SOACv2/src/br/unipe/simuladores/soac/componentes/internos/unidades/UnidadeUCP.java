@@ -1,8 +1,6 @@
 package br.unipe.simuladores.soac.componentes.internos.unidades;
 
 import br.unipe.simuladores.soac.componentes.interfaces.Componente;
-import br.unipe.simuladores.soac.enums.OpcaoJanelaMensagem;
-import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
