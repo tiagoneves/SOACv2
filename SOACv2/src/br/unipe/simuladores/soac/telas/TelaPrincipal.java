@@ -123,7 +123,8 @@ public class TelaPrincipal extends Tela{
 		MenuItem sied = new MenuItem(Labels.obterValor("sied"));
 		sied.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	TelaWebView telaSied = new TelaWebView(Color.WHITE, 
+		    	TelaWebView telaSied = new TelaWebView(Labels.obterValor("outrossimuladores"),
+		    			Color.WHITE, 
 		    			Screen.getPrimary().getVisualBounds().getHeight(), 
 		    			Screen.getPrimary().getVisualBounds().getWidth(), 
 		    			"http://www.hilariotomaz.com.br/SI-ED/");
@@ -135,7 +136,8 @@ public class TelaPrincipal extends Tela{
 		MenuItem sin = new MenuItem(Labels.obterValor("sin"));
 		sin.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	TelaWebView telaSin = new TelaWebView(Color.WHITE, 
+		    	TelaWebView telaSin = new TelaWebView(Labels.obterValor("outrossimuladores"),
+		    			Color.WHITE, 
 		    			Screen.getPrimary().getVisualBounds().getHeight(), 
 		    			Screen.getPrimary().getVisualBounds().getWidth(), 
 		    			"http://wrco.ccsa.ufpb.br:8080/SimuladorSO/");
@@ -324,6 +326,33 @@ public class TelaPrincipal extends Tela{
 		case INGLES_US: tgGroupIdioma.selectToggle(ingles); break;
 		}
 		
+		Menu questionarios = new Menu(Labels.obterValor("questionarios"));
+		MenuItem avaliacao = new MenuItem(Labels.obterValor("avaliacaosoac"));
+		avaliacao.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	TelaWebView telaAvalicao = new TelaWebView(Labels.obterValor("questionarioavaliacaosoac"),
+		    			Color.WHITE, 
+		    			Screen.getPrimary().getVisualBounds().getHeight(), 
+		    			Screen.getPrimary().getVisualBounds().getWidth(), 
+		    			"https://docs.google.com/spreadsheet/viewform?formkey=dDJSbVlaVTRscndsQ3pCd2tqb0NHSnc6MQ");
+		    	telaAvalicao.exibir();
+		    }
+		});
+		questionarios.getItems().add(avaliacao);
+		
+		MenuItem bugs = new MenuItem(Labels.obterValor("relatobugs"));
+		bugs.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	TelaWebView telaBugs = new TelaWebView(Labels.obterValor("relatobugssoac"),
+		    			Color.WHITE, 
+		    			Screen.getPrimary().getVisualBounds().getHeight(), 
+		    			Screen.getPrimary().getVisualBounds().getWidth(), 
+		    			"https://docs.google.com/spreadsheet/viewform?formkey=dFZSNkRpT05DZzRvWTczWGNWZmx4ZlE6MQ");
+		    	telaBugs.exibir();
+		    }
+		});
+		questionarios.getItems().add(bugs);
+		
 		Menu ajuda = new Menu(Labels.obterValor("ajuda"));
 		MenuItem sobre = new MenuItem(Labels.obterValor("sobre"));
 		ajuda.getItems().add(sobre);
@@ -345,6 +374,7 @@ public class TelaPrincipal extends Tela{
 		menuBar.getMenus().add(janela);
 		menuBar.getMenus().add(outros);
 		menuBar.getMenus().add(idioma);
+		menuBar.getMenus().add(questionarios);
 		menuBar.getMenus().add(ajuda);
 		
 		menuBar.setMinWidth(Screen.getPrimary().getVisualBounds().getWidth());

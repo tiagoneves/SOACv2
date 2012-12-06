@@ -20,8 +20,8 @@ public class TelaWebView extends Tela{
 
 	private String url;
 	
-	public TelaWebView(Color cor, double height, double width, String url) {
-		super(Labels.obterValor("outrossimuladores"), cor, height, width);
+	public TelaWebView(String titulo, Color cor, double height, double width, String url) {
+		super(titulo, cor, height, width);
 		setUrl(url);
 		criar();
 	}
