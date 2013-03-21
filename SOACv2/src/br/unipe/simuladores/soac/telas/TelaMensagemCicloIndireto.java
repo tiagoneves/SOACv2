@@ -3,7 +3,6 @@ package br.unipe.simuladores.soac.telas;
 import br.unipe.simuladores.soac.enums.EstadoCiclo;
 import br.unipe.simuladores.soac.enums.OperandoCicloIndireto;
 import br.unipe.simuladores.soac.internacional.Labels;
-import javafx.scene.paint.Color;
 
 public class TelaMensagemCicloIndireto extends TelaMensagemSimulacao{
 
@@ -19,7 +18,7 @@ public class TelaMensagemCicloIndireto extends TelaMensagemSimulacao{
 	private static final String TRANSFERIR_MBR_PARA_IRTXT = Labels.obterValor("transferirmbrparairtxt");
 	
 	public TelaMensagemCicloIndireto(EstadoCiclo estado) {
-		super(Color.rgb(245, 245, 245));
+		super();
 		
 		super.estado = estado;
 		
@@ -27,7 +26,7 @@ public class TelaMensagemCicloIndireto extends TelaMensagemSimulacao{
 	}
 	
 	public TelaMensagemCicloIndireto(EstadoCiclo estado, OperandoCicloIndireto operando) {
-		super(Color.rgb(245, 245, 245));
+		super();
 		
 		super.estado = estado;
 		

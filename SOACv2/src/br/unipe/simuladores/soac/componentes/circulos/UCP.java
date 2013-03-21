@@ -3,7 +3,7 @@ package br.unipe.simuladores.soac.componentes.circulos;
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculoQuebravel;
 import br.unipe.simuladores.soac.componentes.internos.UCPInterna;
 import br.unipe.simuladores.soac.internacional.Labels;
-import br.unipe.simuladores.soac.telas.TelaPrincipal;
+import br.unipe.simuladores.soac.principal.Main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -69,8 +69,8 @@ public class UCP extends ComponenteCirculoQuebravel{
 				final Line linha = new Line();
 				final Line linha2 = new Line();
 				
-				TelaPrincipal.adicionarAoPalco(linha);
-				TelaPrincipal.adicionarAoPalco(linha2);
+				Main.adicionarAoPalco(linha);
+				Main.adicionarAoPalco(linha2);
 				
 				linha.toBack();
 				linha2.toBack();
@@ -260,7 +260,7 @@ public class UCP extends ComponenteCirculoQuebravel{
 				if(group.getOpacity() != 0.0f) {
 
 					ucpInterna = new UCPInterna();
-					TelaPrincipal.adicionarAoPalco(ucpInterna.getContent());
+					Main.adicionarAoPalco(ucpInterna.getContent());
 					
 					quebrar(3000);
 					ucpInterna.surgir(3000);

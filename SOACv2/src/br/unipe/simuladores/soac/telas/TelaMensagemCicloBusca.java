@@ -1,6 +1,5 @@
 package br.unipe.simuladores.soac.telas;
 
-import javafx.scene.paint.Color;
 import br.unipe.simuladores.soac.enums.EstadoCiclo;
 import br.unipe.simuladores.soac.internacional.Labels;
 
@@ -17,7 +16,7 @@ public class TelaMensagemCicloBusca extends TelaMensagemSimulacao{
 	private static final String COPIAR_MBR_PARA_IRTXT = Labels.obterValor("copiarmbrparairtxt");
 	
 	public TelaMensagemCicloBusca(EstadoCiclo estado) {
-		super(Color.rgb(245, 245, 245));
+		super();
 		
 		super.estado = estado;
 		

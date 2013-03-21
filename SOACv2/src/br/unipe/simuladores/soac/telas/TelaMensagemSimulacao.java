@@ -7,7 +7,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
 public abstract class TelaMensagemSimulacao extends TelaSimplesMensagem{
 
@@ -15,9 +14,9 @@ public abstract class TelaMensagemSimulacao extends TelaSimplesMensagem{
 	protected Button cancelar;
 	protected EstadoCiclo estado;
 	
-	public TelaMensagemSimulacao(Color cor) {
+	public TelaMensagemSimulacao() {
 		
-		super(Labels.obterValor("mensagem"), cor, "");
+		super(Labels.obterValor("mensagem"), "");
 		
 	}
 

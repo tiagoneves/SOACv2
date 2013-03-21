@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public abstract class Tela {
 	
 	protected Stage stage;
-	protected static Group root;
+	protected Group root;
 	protected Scene scene;
 	protected Color cor;
 	
@@ -33,6 +33,11 @@ public abstract class Tela {
 	public Tela(Stage stage, String titulo, Color cor) {
 		this.stage = stage;
 		iniciarCriacaoTela(titulo, cor);
+	}
+	
+	public Tela(String titulo) {
+		stage = new Stage();
+		iniciarCriacaoTela(titulo, Color.rgb(245, 245, 245));
 	}
 	
 	public Tela(String titulo, Color cor) {

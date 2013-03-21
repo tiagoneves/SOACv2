@@ -2,7 +2,6 @@ package br.unipe.simuladores.soac.telas;
 
 import br.unipe.simuladores.soac.enums.EstadoCiclo;
 import br.unipe.simuladores.soac.internacional.Labels;
-import javafx.scene.paint.Color;
 
 public class TelaMensagemCicloExecucao extends TelaMensagemSimulacao{
 	
@@ -35,7 +34,7 @@ public class TelaMensagemCicloExecucao extends TelaMensagemSimulacao{
 
 	public TelaMensagemCicloExecucao(EstadoCiclo estado) {
 		
-		super(Color.rgb(245, 245, 245));
+		super();
 		
 		super.estado = estado;
 		

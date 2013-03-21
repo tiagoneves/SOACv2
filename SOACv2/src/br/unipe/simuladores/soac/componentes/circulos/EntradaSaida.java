@@ -2,7 +2,7 @@ package br.unipe.simuladores.soac.componentes.circulos;
 
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculo;
 import br.unipe.simuladores.soac.internacional.Labels;
-import br.unipe.simuladores.soac.telas.TelaPrincipal;
+import br.unipe.simuladores.soac.principal.Main;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -64,8 +64,8 @@ public class EntradaSaida extends ComponenteCirculo{
 					final Line linha = new Line();
 					final Line linha2 = new Line();
 					
-					TelaPrincipal.adicionarAoPalco(linha);
-					TelaPrincipal.adicionarAoPalco(linha2);
+					Main.adicionarAoPalco(linha);
+					Main.adicionarAoPalco(linha2);
 					
 					linha.toBack();
 					linha2.toBack();

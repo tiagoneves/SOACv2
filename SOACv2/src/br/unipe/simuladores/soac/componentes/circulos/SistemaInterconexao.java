@@ -3,6 +3,7 @@ package br.unipe.simuladores.soac.componentes.circulos;
 import br.unipe.simuladores.soac.componentes.interfaces.ComponenteCirculoQuebravel;
 import br.unipe.simuladores.soac.componentes.internos.BarramentoInterno;
 import br.unipe.simuladores.soac.internacional.Labels;
+import br.unipe.simuladores.soac.principal.Main;
 import br.unipe.simuladores.soac.telas.TelaPrincipal;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -200,7 +201,7 @@ public class SistemaInterconexao extends ComponenteCirculoQuebravel{
 				if(grupoBarramento.getOpacity() != 0.0f) {
 
 					barramentoInterno = new BarramentoInterno();
-					TelaPrincipal.adicionarAoPalco(barramentoInterno.getContent());
+					Main.adicionarAoPalco(barramentoInterno.getContent());
 					
 					barramentoQuebrado = true;
 					quebrar(3000);

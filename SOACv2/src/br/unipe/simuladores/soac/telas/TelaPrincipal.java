@@ -66,8 +66,8 @@ public class TelaPrincipal extends Tela{
 		botaoStop.setTranslateY(670);
 		botaoStop.setVisible(false);
 		
-		TelaPrincipal.adicionarAoPalco(botaoPlay);
-		TelaPrincipal.adicionarAoPalco(botaoStop);
+		adicionarAoPalco(botaoPlay);
+		adicionarAoPalco(botaoStop);
 
 		root.getChildren().add(computador.getContent());
 		
@@ -291,8 +291,7 @@ public class TelaPrincipal extends Tela{
 				
 				Configuracao.obterInstancia().setIdioma(Idioma.PORTUGUES_BR);
 				
-				TelaAviso aviso = new TelaAviso
-						(Color.rgb(245, 245, 245), Labels.obterValor("avisoidioma"));
+				TelaAviso aviso = new TelaAviso(Labels.obterValor("avisoidioma"));
 				
 				aviso.exibir();
 				
@@ -311,8 +310,7 @@ public class TelaPrincipal extends Tela{
 				
 				Configuracao.obterInstancia().setIdioma(Idioma.INGLES_US);
 				
-				TelaAviso aviso = new TelaAviso
-						(Color.rgb(245, 245, 245), Labels.obterValor("avisoidioma"));
+				TelaAviso aviso = new TelaAviso(Labels.obterValor("avisoidioma"));
 				
 				aviso.exibir();
 				
@@ -354,15 +352,30 @@ public class TelaPrincipal extends Tela{
 		questionarios.getItems().add(bugs);
 		
 		Menu ajuda = new Menu(Labels.obterValor("ajuda"));
+		MenuItem guia = new MenuItem(Labels.obterValor("guia"));
+		ajuda.getItems().add(guia);
 		MenuItem sobre = new MenuItem(Labels.obterValor("sobre"));
 		ajuda.getItems().add(sobre);
+		
+		guia.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				TelaGuia telaGuia = new TelaGuia();
+				telaGuia.exibir();
+				
+			}
+			
+		});
 		
 		sobre.setOnAction(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent arg0) {
 				
-				//TODO 
+				TelaSobre telaSobre = new TelaSobre();
+				telaSobre.exibir();
 				
 			}
 			
@@ -467,13 +480,13 @@ public class TelaPrincipal extends Tela{
 		
 	}
 
-	public static void adicionarAoPalco(Node node) {
+	public void adicionarAoPalco(Node node) {
 		
 		root.getChildren().add(node);
 		
 	}
 	
-	public static void removerDoPalco(Node node) {
+	public void removerDoPalco(Node node) {
 		
 		root.getChildren().remove(node);
 		
