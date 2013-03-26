@@ -125,6 +125,7 @@ public class Computador extends ComponenteCirculo {
 			txtEntradaSaida.setY(300);
 			
 			Text txtMemoriaPrincipal = new Text(Labels.obterValor("memoriaprincipal"));
+			System.out.println(txtMemoriaPrincipal.getFont().getSize());
 			txtMemoriaPrincipal.setX(640);
 			txtMemoriaPrincipal.setY(300);
 			
@@ -150,7 +151,6 @@ public class Computador extends ComponenteCirculo {
 			textClique.setY(300);
 			
 			txtComputador.setFont(new Font(11));
-			System.out.println(txtComputador.getFont().getSize());
 			txtComputador.setX(562);
 			txtComputador.setY(402);
 						
