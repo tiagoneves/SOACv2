@@ -125,12 +125,15 @@ public class Computador extends ComponenteCirculo {
 			txtEntradaSaida.setY(300);
 			
 			Text txtMemoriaPrincipal = new Text(Labels.obterValor("memoriaprincipal"));
-			txtMemoriaPrincipal.setFont(new Font(12));
+			txtMemoriaPrincipal.setFont(new Font("Arial", 12));
 			System.out.println(txtMemoriaPrincipal.getFont().getSize());
+			for(String fonte : Font.getFontNames())
+				System.out.println(fonte);
 			txtMemoriaPrincipal.setX(640);
 			txtMemoriaPrincipal.setY(300);
 			
 			Text txtSistema = new Text(Labels.obterValor("sistemainterconexao"));
+			txtSistema.setFont(new Font("Arial", 12));
 			txtSistema.setX(535);
 			txtSistema.setY(400);
 			
