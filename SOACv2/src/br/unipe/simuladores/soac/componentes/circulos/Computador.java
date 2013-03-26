@@ -113,6 +113,7 @@ public class Computador extends ComponenteCirculo {
 		group.getChildren().remove(txtComputador);
 		
         txtComputador = new Text(Labels.obterValor("computador"));
+        System.out.println(txtComputador.getFont().getSize());
 		
 		//se for expandir adiciona outros elementos ao círculo do computador
 		if (expanded) {
