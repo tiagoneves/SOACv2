@@ -134,6 +134,8 @@ public class Computador extends ComponenteCirculo {
 			
 			Text txtSistema = new Text(Labels.obterValor("sistemainterconexao"));
 			txtSistema.setFont(new Font("SansSerif Regular", 12));
+			System.out.println(txtSistema.getFont());
+			System.out.println(txtMemoriaPrincipal.getFont());
 			txtSistema.setX(535);
 			txtSistema.setY(400);
 			
