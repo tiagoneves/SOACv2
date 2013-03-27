@@ -41,7 +41,15 @@
 		</javac>
 	</target>
 	
-	<target name="imagens" depends ="compilar">
+	<target name="css" depends ="compilar">
+			<copy todir="${basedir}/bin">
+				<fileset dir="${basedir}/src">
+					<include name = "*.css"/>
+				</fileset>
+			</copy>
+	</target>
+	
+	<target name="imagens" depends ="css">
 			<copy todir="${basedir}/bin/br/unipe/simuladores/soac/botoes">
 				<fileset dir="${basedir}/src/br/unipe/simuladores/soac/botoes">
 					<include name = "*.png"/>

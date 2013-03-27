@@ -50,6 +50,7 @@ public abstract class Tela {
 		stage.setTitle(titulo);
 		root = new Group();
 		scene = new Scene(root, cor);
+		scene.getStylesheets().add("style.css");
 		stage.setScene(scene);
 	}
 	

@@ -8,6 +8,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.ToolBarBuilder;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class TelaGuia extends Tela{
 	
@@ -34,11 +36,17 @@ public class TelaGuia extends Tela{
 		VBox vBox = new VBox();
 		
 		passo1 = new Button(Labels.obterValor("passo1"));
+		passo1.setId("fonte");
 		passo2 = new Button(Labels.obterValor("passo2"));
+		passo2.setId("fonte");
 		passo3 = new Button(Labels.obterValor("passo3"));
+		passo3.setId("fonte");
 		passo4 = new Button(Labels.obterValor("passo4"));
+		passo4.setId("fonte");
 		passo5 = new Button(Labels.obterValor("passo5"));
+		passo5.setId("fonte");
 		passo6 = new Button(Labels.obterValor("passo6"));
+		passo6.setId("fonte");
 		
 		definirEventosBotoes();
 		
@@ -57,6 +65,8 @@ public class TelaGuia extends Tela{
 		textArea.setMaxSize(404, 500);
 		textArea.setText(Labels.obterValor("passo1txt"));
 		textArea.setEditable(false);
+		
+		textArea.setId("fonte");
 		
 		stage.setWidth(404);
 		stage.setHeight(230);
