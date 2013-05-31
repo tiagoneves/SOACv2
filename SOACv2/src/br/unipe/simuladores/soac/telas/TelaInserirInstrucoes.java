@@ -277,10 +277,6 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		case DIRETO:{ 
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
 				throw new DadosInvalidosException(Labels.obterValor("valorvarop1naoexiste"));
-			else {
-				if (TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().ehPonteiro(valor, false))
-					throw new DadosInvalidosException(Labels.obterValor("valorvarop1ehponteiro"));
-			};
 		};break;
 		case INDIRETO: {
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
@@ -297,11 +293,6 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		case INDIRETO_REGISTRADOR: {
 			if(!TelaPrincipal.getComputador().getUCP().getUCPInterna().contemRegistrador(valor))
 				throw new DadosInvalidosException(Labels.obterValor("registradorvalorop1naoexiste"));
-			else {
-				Integer endereco = TelaPrincipal.getComputador().getUCP().getUCPInterna().obterConteudoRegistrador(valor);
-				if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(endereco, true))
-					throw new DadosInvalidosException(Labels.obterValor("registradornaocontemendmemoria"));
-			}
 		}break;
 		}
 		
@@ -325,10 +316,6 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		case DIRETO:{ 
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
 				throw new DadosInvalidosException(Labels.obterValor("valorvarop2naoexiste"));
-			else {
-				if (TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().ehPonteiro(valor, false))
-					throw new DadosInvalidosException(Labels.obterValor("valorvarop2ehponteiro"));
-			};
 		};break;
 		case INDIRETO: {
 			if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(valor, false))
@@ -345,11 +332,6 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		case INDIRETO_REGISTRADOR: {
 			if(!TelaPrincipal.getComputador().getUCP().getUCPInterna().contemRegistrador(valor))
 				throw new DadosInvalidosException(Labels.obterValor("registradorvalorop2naoexiste"));
-			else {
-				Integer endereco = TelaPrincipal.getComputador().getUCP().getUCPInterna().obterConteudoRegistrador(valor);
-				if (!TelaPrincipal.getComputador().getMemoriaPrincipal().getMemoriaInterna().contemVar(endereco, true))
-					throw new DadosInvalidosException(Labels.obterValor("registradornaocontemendmemoria"));
-			}
 		}break;
 		}
 		
@@ -397,7 +379,21 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		case DIV: instrucao += "DIV ";break;
 		}
 		
-		instrucao += tfValor1.getText() + ", "+tfValor2.getText();
+		ModoEnderecamento modo1 = obterModoEnderecamento(cbModEnd1);
+		ModoEnderecamento modo2 = obterModoEnderecamento(cbModEnd2);
+		
+		if (modo1 == ModoEnderecamento.INDIRETO || modo1 == ModoEnderecamento.INDIRETO_REGISTRADOR)
+			instrucao += "("+tfValor1.getText()+")";
+		else
+			instrucao += tfValor1.getText();
+		
+		instrucao += ", ";
+		
+		if (modo2 == ModoEnderecamento.INDIRETO || modo2 == ModoEnderecamento.INDIRETO_REGISTRADOR)
+			instrucao += "("+tfValor2.getText()+")";
+		else
+			instrucao += tfValor2.getText();
+		
 		instrucoes.add(instrucao);
 		lstInstrucoes.setItems(instrucoes);
 		
@@ -408,21 +404,33 @@ public class TelaInserirInstrucoes extends Tela implements Formulario{
 		Integer refOperando1 = 0;
 		Integer refOperando2;
 		
+		String valor1, valor2;
+		
+		if (tfValor1.getText().contains("("))
+			valor1 = tfValor1.getText().substring(0, tfValor1.getText().length());
+		else
+			valor1 = tfValor1.getText();
+		
+		if (tfValor2.getText().contains("("))
+			valor2 = tfValor2.getText().substring(0, tfValor2.getText().length());
+		else
+			valor2 = tfValor2.getText();
+		
 		if (modo1 == ModoEnderecamento.DIRETO || modo1 == ModoEnderecamento.INDIRETO) 
 			refOperando1 = TelaPrincipal.getComputador().getMemoriaPrincipal().
-			getMemoriaInterna().obterEnderecoVariavel(tfValor1.getText());
+			getMemoriaInterna().obterEnderecoVariavel(valor1);
 		else if (modo1 == ModoEnderecamento.REGISTRADOR || modo1 == ModoEnderecamento.INDIRETO_REGISTRADOR) 
 			refOperando1 = TelaPrincipal.getComputador().getUCP().getUCPInterna().
-			obterEnderecoRegistrador(tfValor1.getText());
+			obterEnderecoRegistrador(valor1);
 		
 		if (modo2 == ModoEnderecamento.DIRETO || modo2 == ModoEnderecamento.INDIRETO) 
 			refOperando2 = TelaPrincipal.getComputador().getMemoriaPrincipal().
-			getMemoriaInterna().obterEnderecoVariavel(tfValor2.getText());
+			getMemoriaInterna().obterEnderecoVariavel(valor2);
 		else if (modo2 == ModoEnderecamento.REGISTRADOR || modo2 == ModoEnderecamento.INDIRETO_REGISTRADOR) 
 			refOperando2 = TelaPrincipal.getComputador().getUCP().getUCPInterna().
-			obterEnderecoRegistrador(tfValor2.getText());
+			obterEnderecoRegistrador(valor2);
 		else
-			refOperando2 = Integer.parseInt(tfValor2.getText());
+			refOperando2 = Integer.parseInt(valor2);
 		
 		Instrucao instrucao = 
 				new Instrucao(refOperando1, refOperando2, operacao, modo1, modo2);

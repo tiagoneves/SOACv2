@@ -149,21 +149,21 @@ public class ULA extends UnidadeUCP{
 			
 			if (tpOp2 == TipoVariavel.INTEIRO)
 				
-				resultado = op1.intValue() / op2.intValue();
+				resultado = (float) op1.intValue() / op2.intValue();
 			
 			else
 				
-				resultado = op1.intValue() / op2.floatValue();
+				resultado = (float) op1.intValue() / op2.floatValue();
 			
 		} else {
 			
 			if (tpOp2 == TipoVariavel.INTEIRO)
 				
-				resultado = op1.floatValue() / op2.intValue();
+				resultado = (float) op1.floatValue() / op2.intValue();
 			
 			else
 				
-				resultado = op1.floatValue() / op2.floatValue();
+				resultado = (float) op1.floatValue() / op2.floatValue();
 			
 		}
 		

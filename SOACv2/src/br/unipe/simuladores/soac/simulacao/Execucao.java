@@ -611,22 +611,33 @@ public class Execucao extends Ciclo {
 			@Override
 			public void handle(ActionEvent e) {
 				
-				Variavel variavel = controlador.getMemoriaInterna()
-						.obterVariavel(new Integer(valorMar.getText()));
-				variavel.dataProperty().setValue(valorMbr.getText());
-				controlador.getMemoriaInterna().atualizarValoresVariaveis();
+				if (TelaPrincipal.getComputador().getMemoriaPrincipal()
+						.getMemoriaInterna().getNextEnd().toString()
+						.equals(valorMar.getText())) {
+						TelaPrincipal.getComputador().getMemoriaPrincipal()
+							.getMemoriaInterna()
+							.inserirDadoSemIdentificador(valorMbr.getText());
+						
 				
-				ObservableList<VariavelIdentificador> variaveis 
-					= TelaPrincipal.getTabVariaveis().getItems();
-				
-				for (VariavelIdentificador var : variaveis) {
+				} else {
+					Variavel variavel = controlador.getMemoriaInterna()
+							.obterVariavel(new Integer(valorMar.getText()));
+					variavel.dataProperty().setValue(valorMbr.getText());
+					controlador.getMemoriaInterna().atualizarValoresVariaveis();
 					
-					if (var.enderecoProperty().getValue().equals(valorMar.getText()))
-						var.dataProperty().setValue(valorMbr.getText());
+					ObservableList<VariavelIdentificador> variaveis 
+						= TelaPrincipal.getTabVariaveis().getItems();
 					
+					for (VariavelIdentificador var : variaveis) {
+						
+						if (var.enderecoProperty().getValue().equals(valorMar.getText()))
+							var.dataProperty().setValue(valorMbr.getText());
+						
+					}
+					
+					TelaPrincipal.getTabVariaveis().setItems(variaveis);
 				}
-				
-				TelaPrincipal.getTabVariaveis().setItems(variaveis);
+						
 				
 				fimExecucao();
 				

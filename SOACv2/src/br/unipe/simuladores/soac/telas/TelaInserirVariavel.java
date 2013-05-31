@@ -160,8 +160,15 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 		if (identificador.isEmpty()) 
 			throw new DadosInvalidosException(Labels.obterValor("informeidentificador"));
 		
-		if (valor.isEmpty()) 
-			throw new DadosInvalidosException(Labels.obterValor("informevalor"));
+		if (valor.isEmpty()) {
+			if (normal) {
+				tfValor.setText("0");
+				valor = "0";
+			} else {
+				tfValor.setText("-1");
+				valor = "-1";
+			}
+		}
 		
 		Pattern padraoId = Pattern.compile("([a-zA-Z])\\w*");
 		Matcher pesquisa = padraoId.matcher(identificador);
@@ -195,9 +202,9 @@ public class TelaInserirVariavel extends Tela implements Formulario{
 				throw new DadosInvalidosException(
 						Labels.obterValor("ponteirosoharmazenainteiros"));
 			
-			if (!TelaPrincipal.getComputador().getMemoriaPrincipal()
+			/*if (!TelaPrincipal.getComputador().getMemoriaPrincipal()
 					.getMemoriaInterna().contemVar(new Integer(valor), true))
-				throw new DadosInvalidosException(Labels.obterValor("naohavariavelcomendereco"));
+				throw new DadosInvalidosException(Labels.obterValor("naohavariavelcomendereco"));*/
 			
 			if(TelaPrincipal.getComputador().getMemoriaPrincipal()
 					.getMemoriaInterna().ehPonteiro(new Integer(valor), true))

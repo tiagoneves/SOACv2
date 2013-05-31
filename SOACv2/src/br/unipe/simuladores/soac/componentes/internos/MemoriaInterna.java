@@ -126,15 +126,25 @@ public class MemoriaInterna extends ComponenteInterno{
 		
 	}
 	
-	public void inserirDado(Variavel v, String var) throws VariavelExistenteException {
+	public void inserirDado(Variavel v, String id) throws VariavelExistenteException {
 		
-		if (contemVar(var, false))
+		if (contemVar(id, false))
 			throw new VariavelExistenteException("A variável já existe. Informe outro identificador");
 			
 		v.endereco.setValue(nextEnd);
 		variaveis.add(v);
 		tabelaVariaveis.setItems(variaveis);
-		mapaEnderecos.put(var, nextEnd);
+		mapaEnderecos.put(id, nextEnd);
+		nextEnd++;
+		
+	}
+	
+	public void inserirDadoSemIdentificador(String dado){
+		
+		Variavel var = new Variavel(dado, null, true);
+		var.endereco.setValue(nextEnd);
+		variaveis.add(var);
+		tabelaVariaveis.setItems(variaveis);
 		nextEnd++;
 		
 	}
